@@ -61,7 +61,7 @@
 		<div class="clearfix">
 
 			<?php if ( is_single() ) : ?>
-				<a class="btn float-right" href="#">
+				<a class="btn float-right" href="<?php echo photoboard_get_zip_file(); ?>" download>
 					<svg class="icon">
 						<use xlink:href="#icon-download"></use>
 					</svg>

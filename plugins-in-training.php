@@ -115,7 +115,7 @@
 			array(
 				'post_type'      => 'attachment',
 				'post_mime_type' => 'video',
-				'post_parent'    => $id,
+				'post_parent'    => $post->ID,
 				'posts_per_page' => -1,
 			)
 		);
@@ -260,3 +260,119 @@
 		}
 	}
 	add_action('init', 'photoboard_process_set_notifications_form');
+
+
+
+
+	/**
+	 * Create a zip file of all photos
+	 * @link http://davidwalsh.name/create-zip-php
+	 * @param  array   $files       Files to compress
+	 * @param  string  $destination Destination to save the file
+	 * @param  boolean $overwrite   If true, overwrites existing file with same name
+	 * @return string              	File name/destination
+	 */
+	function photoboard_create_zip($files = array(),$destination = '',$overwrite = false) {
+		//if the zip file already exists and overwrite is false, return false
+		if(file_exists($destination) && !$overwrite) { return false; }
+		//vars
+		$valid_files = array();
+		//if files were passed in...
+		if(is_array($files)) {
+			//cycle through each file
+			foreach($files as $file) {
+				//make sure the file exists
+				if(file_exists($file)) {
+					$valid_files[] = $file;
+				}
+			}
+		}
+		//if we have good files...
+		if(count($valid_files)) {
+			//create the archive
+			$zip = new ZipArchive();
+			if($zip->open($destination,$overwrite ? ZIPARCHIVE::OVERWRITE : ZIPARCHIVE::CREATE) !== true) {
+				return false;
+			}
+			//add the files
+			foreach($valid_files as $file) {
+				$zip->addFile($file,$file);
+			}
+			//debug
+			//echo 'The zip archive contains ',$zip->numFiles,' files with a status of ',$zip->status;
+
+			//close the zip -- done!
+			$zip->close();
+
+			//check to make sure the file exists
+			return file_exists($destination);
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+
+
+
+	/**
+	 * When a new post is created, generate a zip of all media
+	 */
+	function photoboard_create_zip_on_save() {
+
+		// Variables
+		global $post;
+		$wp_upload_directory = wp_upload_dir();
+		$files_to_zip = array();
+		$images = get_children(
+			array(
+				'post_type'      => 'attachment',
+				'post_mime_type' => 'image',
+				'post_parent'    => $post->ID,
+				'posts_per_page' => 1,
+			)
+		);
+		$videos = get_children(
+			array(
+				'post_type'      => 'attachment',
+				'post_mime_type' => 'video',
+				'post_parent'    => $id,
+				'posts_per_page' => -1,
+			)
+		);
+
+		// Push files to array
+		if ($images) {
+			foreach ($images as $image) {
+				$files_to_zip[] = wp_get_attachment_image_src( $image->ID, 'full' )[0];
+			}
+		}
+
+		if ($videos) {
+			foreach ($videos as $video) {
+				$files_to_zip[] = $video->guid;
+			}
+		}
+
+		// Create zip
+		photoboard_create_zip($files_to_zip, $wp_upload_directory[baseurl] . '/photoboard/' . $post->post_name . '.zip', true);
+
+	}
+	add_action('save_post', 'photoboard_create_zip_on_save');
+	add_action('draft_to_publish', 'photoboard_create_zip_on_save');
+	add_action('new_to_publish', 'photoboard_create_zip_on_save');
+	add_action('pending_to_publish', 'photoboard_create_zip_on_save');
+	add_action('future_to_publish', 'photoboard_create_zip_on_save');
+
+
+
+
+	/**
+	 * Get URL of post media zip file
+	 */
+	function photoboard_get_zip_file() {
+		global $post;
+		$wp_upload_directory = wp_upload_dir();
+		return $wp_upload_directory[baseurl] . '/photoboard/' . $post->post_name . '.zip';
+	}
