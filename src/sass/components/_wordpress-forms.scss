@@ -1,0 +1,8 @@
+#submit {
+	@extend .btn;
+	@extend .input-inline;
+}
+
+.field-checkbox {
+	margin-bottom: $spacing;
+}

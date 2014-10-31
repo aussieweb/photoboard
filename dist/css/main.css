@@ -341,38 +341,9 @@ body {
     line-height: 1.5625;
   }
 }
-@media (min-width: 80em) {
-  body {
-    font-size: 125%;
-  }
-}
 
 p {
   margin-bottom: 1.5625em;
-}
-
-/**
- * Text sizes
- */
-.text-small {
-  font-size: 0.9375em;
-}
-
-.text-large {
-  font-size: 1.1875em;
-  line-height: 1.4;
-}
-
-@media (min-width: 40em) {
-  .text-large {
-    font-size: 1.3125em;
-  }
-}
-/**
- * Text colors
- */
-.text-muted {
-  color: #808080;
 }
 
 /**
@@ -613,7 +584,7 @@ pre code {
  * @section Buttons
  * Styling for CSS buttons.
  */
-.btn {
+.btn, #submit {
   display: inline-block;
   font-size: 0.9375em;
   padding: 0.5em 0.6875em;
@@ -626,26 +597,41 @@ pre code {
   margin-bottom: 0.3125em;
 }
 
-.btn,
+.btn, #submit,
 .btn:visited,
+#submit:visited,
 a .btn:visited,
+a #submit:visited,
 .btn:hover,
+#submit:hover,
 a .btn:hover,
+a #submit:hover,
 .btn:focus,
+#submit:focus,
 a .btn:focus,
+a #submit:focus,
 .btn:active,
+#submit:active,
 a .btn:active,
-.btn.active {
+a #submit:active,
+.btn.active,
+.active#submit {
   color: #ffffff;
 }
 
-.btn:hover,
+.btn:hover, #submit:hover,
 a .btn:hover,
+a #submit:hover,
 .btn:focus,
+#submit:focus,
 a .btn:focus,
+a #submit:focus,
 .btn:active,
+#submit:active,
 a .btn:active,
-.btn.active {
+a #submit:active,
+.btn.active,
+.active#submit {
   background-color: #005580;
   border-color: #005580;
   text-decoration: none;
@@ -667,15 +653,17 @@ a .btn-secondary:active,
   border-color: #5a5a5a;
 }
 
-.btn:active,
-.btn.active {
+.btn:active, #submit:active,
+.btn.active,
+.active#submit {
   -webkit-box-shadow: inset 0 0.15625em 0.25em rgba(0, 0, 0, 0.15), 0 0.0725em 0.15625em rgba(0, 0, 0, 0.05);
   box-shadow: inset 0 0.15625em 0.25em rgba(0, 0, 0, 0.15), 0 0.0725em 0.15625em rgba(0, 0, 0, 0.05);
   outline: 0;
 }
 
-.btn.disabled,
-.btn[disabled] {
+.btn.disabled, .disabled#submit,
+.btn[disabled],
+[disabled]#submit {
   pointer-events: none;
   cursor: not-allowed;
   opacity: 0.5;
@@ -702,7 +690,8 @@ input[type="button"].btn-block {
 }
 
 button,
-.btn {
+.btn,
+#submit {
   cursor: pointer;
   text-align: center;
   vertical-align: middle;
@@ -714,8 +703,9 @@ button,
   -webkit-appearance: none;
 }
 
-.btn:last-child,
-input.btn {
+.btn:last-child, #submit:last-child,
+input.btn,
+input#submit {
   margin-right: 0;
 }
 
@@ -797,7 +787,7 @@ select:focus {
 /**
  * Inline inputs
  */
-.input-inline {
+.input-inline, #submit {
   display: inline-block;
   width: auto;
   vertical-align: middle;
@@ -809,6 +799,10 @@ select:focus {
 .input-condensed {
   padding: 0.0725em 0.3125em;
   font-size: 0.9375em;
+}
+
+.field-checkbox {
+  margin-bottom: 1.5625em;
 }
 
 /**
@@ -839,6 +833,18 @@ select:focus {
 /**
  * Hide fallback text if browser supports SVG
  */
+@media (max-width: 40em) {
+  .svg .icon-supporting-text {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+}
 /**
  * @section WordPress Image Classes
  * Styling for the classes WordPress automatically applies to images.
@@ -906,10 +912,214 @@ select:focus {
     margin-right: 0;
   }
 }
+/* For text-based logo, override default link styling.
+ * If .logo and .nav don't align properly,
+ * adjust the .logo line-height. */
+.nav-wrap-navbar {
+  background-color: #0088cc;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+}
+
+a.logo-navbar {
+  display: inline-block;
+  float: left;
+  font-weight: bold;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* For text-based logo, override default link hover styling */
+.logo-navbar:hover {
+  color: #e5e5e5;
+  text-decoration: none;
+}
+
+/* Remove default list styling for navigation list */
+.nav-navbar {
+  list-style: none;
+  text-align: right;
+  margin: 0 -0.5em;
+  padding: 0;
+}
+
+/* Display navigation items as inline-block elements.
+ * Add slight margin between each navigation item. */
+.nav-navbar > li {
+  display: inline-block;
+  float: none;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+/* Link styling */
+.nav-navbar > li > a {
+  color: #ffffff;
+}
+
+.nav-navbar > li > a:hover {
+  color: #e5e5e5;
+  border-bottom: 0.1875em solid #006699;
+  text-decoration: none;
+}
+
+/* Active link styling */
+.nav-navbar > li.active > a {
+  border-bottom: 0.1875em solid #006699;
+}
+
+/* Hide the navigation toggle menu button by default.
+ * Only needed for expand-and-collapse option. */
+.nav-toggle-navbar {
+  display: none;
+  visibility: hidden;
+}
+
+/* Clearfix */
+.nav-wrap-navbar:before,
+.nav-wrap-navbar:after {
+  display: table;
+  content: "";
+}
+
+.nav-wrap-navbar:after {
+  clear: both;
+}
+
+/**
+ * Secondary navigation
+ */
+.nav-secondary {
+  background-color: #e5e5e5;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+}
+
+@media (max-width: 40em) {
+  .svg .nav-wrap-navbar {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+
+  .svg .nav-wrap-navbar .icon {
+    height: 1.5em;
+    width: 1.5em;
+  }
+
+  .svg .nav-navbar {
+    margin-left: -1em;
+    margin-right: -1em;
+  }
+
+  .svg .nav-navbar > li {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+
+  .nav-secondary {
+    background-color: #e5e5e5;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+}
+/*  Adds a border */
+.img-border, .img-photo,
+a:hover .img-border,
+a:hover .img-photo {
+  border: 0.0725em solid #cccccc;
+}
+
+/*  Adds padding and a white border */
+.img-photo {
+  padding: 0.25em;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 0.0725em 0.0725em rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.0725em 0.0725em rgba(0, 0, 0, 0.1);
+}
+
+/* Adds a 50% border radius,
+ * turning square images into a circle. */
+.alert {
+  color: #005580;
+  background-color: #cce7f4;
+  border: 0.0725em solid #a5d5ed;
+  margin-bottom: 1.5625em;
+  padding: 0.25em 0.5em;
+  border-radius: 0.0725em;
+}
+
+.alert-success {
+  color: #1f481c;
+  background-color: #d7e5d5;
+  border-color: #b9d2b6;
+}
+
+.alert-danger {
+  color: #43070a;
+  background-color: #e7ced0;
+  border-color: #d5aaac;
+}
+
+.alert-warning {
+  color: #614a04;
+  background-color: #f7edcd;
+  border-color: #f2e0a8;
+}
+
+/*	Hide show/hide labels by default */
+.x-ray,
+.x-ray-show,
+.x-ray-hide {
+  display: none;
+  visibility: hidden;
+}
+
+/*	Display show/hide toggle when modern JS API's supported.
+ *	Display show/hide labels when active. */
+.js-x-ray .x-ray,
+.x-ray-show.active,
+.x-ray-hide.active {
+  display: block;
+  visibility: visible;
+}
+
 /**
  * @section Overrides
  * Nudge and tweak alignment, spacing, and visibility.
  */
+/**
+ * Text sizes
+ */
+.text-small {
+  font-size: 0.9375em;
+}
+
+.text-large {
+  font-size: 1.1875em;
+  line-height: 1.4;
+}
+
+@media (min-width: 40em) {
+  .text-large {
+    font-size: 1.3125em;
+  }
+}
+/**
+ * Text colors
+ */
+.text-muted {
+  color: #808080;
+}
+
+.text-white,
+.text-white a {
+  color: #ffffff;
+}
+
+.text-white a:hover {
+  color: #e5e5e5;
+}
+
 /**
  * Text alignment
  */
@@ -923,6 +1133,21 @@ select:focus {
 
 .text-left {
   text-align: left;
+}
+
+/**
+ * Background Colors
+ */
+.bg-primary {
+  background-color: #0088cc;
+}
+
+/**
+ * Display Types
+ */
+.display-block {
+  display: block;
+  width: 100%;
 }
 
 /**
@@ -1046,6 +1271,18 @@ select:focus {
   width: auto;
 }
 
+@media (max-width: 40em) {
+  .supporting-text {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+}
 /**
  * @workaround
  * @affected IE 8/9/10

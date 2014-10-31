@@ -7,7 +7,7 @@
 
 ?>
 
-<article>
+<article <?php if ( !is_singular() ) { echo 'class="grid-dynamic" data-right-height-content'; } ?>>
 
 	<header>
 		<?php
@@ -18,13 +18,20 @@
 			 */
 		?>
 		<?php if ( is_single() ) : ?>
-			<h1><?php the_title(); ?></h1>
+			<h1 class="no-margin-bottom"><?php the_title(); ?></h1>
 		<?php elseif ( is_page() ) : ?>
 			<?php if ( !is_page_template( 'page-plain.php' ) ) : ?>
 				<h1><?php the_title(); ?></h1>
 			<?php endif; ?>
 		<?php else : ?>
-			<h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
+			<a href="<?php the_permalink(); ?>">
+				<?php if ( !is_singular() ) : ?>
+					<figure>
+						<?php the_post_thumbnail( 'thumbnail', 'class=img-photo' ); ?>
+					</figure>
+				<?php endif; ?>
+				<h1 class="no-margin-bottom <?php if ( !is_singular() ) { echo 'h4'; } ?>"><?php the_title(); ?></h1>
+			</a>
 		<?php endif; ?>
 
 		<?php
@@ -38,11 +45,8 @@
 			if ( !is_page() ) :
 		?>
 			<aside>
-				<p>
-					<time datetime="<?php the_time( 'Y-m-d' ); ?>" pubdate><?php the_time( 'F j, Y' ) ?></time> by <a href="<?php echo get_author_posts_url( get_the_author_meta('ID') ); ?>"><?php the_author(); ?> </a>/
-					<a href="<?php comments_link(); ?>">
-						<?php comments_number( __( 'Comment', 'keel' ), __( '1 Comment', 'keel' ), __( '% Comments', 'keel' ) ); ?>
-					</a>
+				<p class="text-muted <?php if ( !is_singular() ) { echo 'text-small'; } ?>">
+					<time datetime="<?php the_time( 'Y-m-d' ); ?>" pubdate><?php the_time( 'F j, Y' ) ?></time>
 					<?php edit_post_link( __( 'Edit', 'keel' ), ' / ', '' ); ?>
 				</p>
 			</aside>
@@ -51,8 +55,25 @@
 
 	<?php
 		// The page or post content
-		the_content( '<p>' . __( 'Read More...', 'keel' ) . '</p>' );
+		if ( is_singular() ) :
 	?>
+
+		<div class="clearfix">
+
+			<?php if ( is_single() ) : ?>
+				<a class="btn float-right" href="#">
+					<svg class="icon">
+						<use xlink:href="#icon-download"></use>
+					</svg>
+					<span class="supporting-text">Download</span> All
+				</a>
+			<?php endif; ?>
+			<?php the_content( '<p>' . __( 'Read More...', 'keel' ) . '</p>' ); ?>
+		</div>
+		<?php echo photoboard_get_post_imgs($post->ID); ?>
+		<?php echo photoboard_get_post_vids($post->ID); ?>
+
+	<?php endif; ?>
 
 	<?php if ( is_page() ) : ?>
 		<?php
@@ -68,11 +89,5 @@
 		?>
 	<?php endif; ?>
 
-	<?php
-		// If this is not the last post on the page, insert a divider
-		if ( !keel_is_last_post($wp_query) ) :
-	?>
-	    <hr>
-	<?php endif; ?>
 
 </article>

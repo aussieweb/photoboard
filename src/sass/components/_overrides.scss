@@ -3,6 +3,42 @@
  * Nudge and tweak alignment, spacing, and visibility.
  */
 
+/**
+ * Text sizes
+ */
+
+.text-small {
+	font-size: calc-em(15px);
+}
+
+.text-large {
+	font-size: calc-em(19px);
+	line-height: 1.4;
+}
+
+@media (min-width: $bp-medium) {
+	.text-large {
+		font-size: calc-em(21px);
+	}
+}
+
+
+/**
+ * Text colors
+ */
+
+.text-muted {
+	color: $color-gray-dark;
+}
+
+.text-white,
+.text-white a {
+	color: $color-white;
+}
+
+.text-white a:hover {
+	color: $color-gray-light;
+}
 
 /**
  * Text alignment
@@ -18,6 +54,25 @@
 
 .text-left {
 	text-align: left;
+}
+
+
+/**
+ * Background Colors
+ */
+//
+.bg-primary {
+	background-color: $color-primary;
+}
+
+
+/**
+ * Display Types
+ */
+
+.display-block {
+	display: block;
+	width: 100%;
 }
 
 
@@ -147,6 +202,19 @@
 	overflow: visible;
 	position: static;
 	width: auto;
+}
+
+@media (max-width: $bp-medium) {
+	.supporting-text {
+		border: 0;
+		clip: rect(0 0 0 0);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		width: 1px;
+	}
 }
 
 /**

@@ -36,6 +36,8 @@
 
 	<body>
 
+		<div hidden><?php include_once('dist/svg/icons.svg'); ?></div>
+
 		<!-- Old Browser Warning -->
 		<!--[if lt IE 9]>
 			<section>
@@ -51,4 +53,4 @@
 			get_template_part( 'nav-main', 'Site Navigation' );
 		?>
 
-		<section id="main">
+		<section id="main" class="container">

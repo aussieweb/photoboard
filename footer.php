@@ -9,9 +9,11 @@
 
 		</section><!-- /#main -->
 
-		<footer>
+		<footer class="container">
 
-			<p>
+			<hr>
+
+			<p class="text-muted">
 				<?php
 					// Insert copyright info
 					printf( __( 'Copyright &copy; %1$s %2$s. All rights reserved.', 'keel' ), date( 'Y' ), get_bloginfo( 'name' ) );
