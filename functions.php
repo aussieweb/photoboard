@@ -5,6 +5,9 @@
  * For modifying and expanding core WordPress functionality.
  */
 
+	require_once( dirname( __FILE__) . '/plugins-in-training-helpers.php' );
+	require_once( dirname( __FILE__) . '/plugins-in-training.php' );
+
 
 	/**
 	 * Load theme scripts in the footer
@@ -21,10 +24,46 @@
 	 * Include script inits in the footer
 	 */
 	function keel_initialize_theme_js() {
-		echo
-			'<script>' .
-				// Scripts initializations here
-			'</script>';
+		if ( is_user_logged_in() && !is_singular() ) {
+			?>
+				<script>
+					rightHeight.init();
+				</script>
+			<?php
+		}
+
+		if ( !is_user_logged_in() || ( is_user_logged_in() && is_page('profile') ) ) {
+			?>
+				<script>
+					xray.init();
+				</script>
+			<?php
+		}
+
+		if ( is_page('signup') ) {
+			?>
+				<script>
+					/**
+					 * Automatically populate username and email address
+					 * Email supplied by query string in URL.
+					 * Username adapted from email address.
+					 */
+					;(function (window, document, undefined) {
+						'use strict';
+						var namefield = document.getElementById('wpwebapp-signup-username');
+						var pwfield = document.getElementById('wpwebapp-signup-email');
+						var email = /[\\?&]email=([^&#]*)/i.exec(window.location.href);
+						if (email) {
+							var username = email[1].split('@');
+							pwfield.value = email[1];
+							if ( username[0] ) {
+								namefield.value = username[0];
+							}
+						}
+					})(window, document);
+				</script>
+			<?php
+		}
 	}
 	add_action('wp_footer', 'keel_initialize_theme_js', 30);
 
@@ -118,6 +157,19 @@
 
 
 	/**
+	 * Allow custom markup in posts
+	 */
+	$allowedposttags['label']['data-x-ray'] = true;
+	$allowedposttags['label']['data-default'] = true;
+	$allowedposttags['input']['type'] = true;
+	$allowedposttags['input']['checked'] = true;
+	$allowedposttags['input']['data-x-ray-toggle'] = true;
+	$allowedposttags['span']['data-x-ray-show'] = true;
+	$allowedposttags['span']['data-x-ray-hide'] = true;
+
+
+
+	/**
 	 * Custom comment callback for wp_list_comments used in comments.php
 	 * @param  object $comment The comment
 	 * @param  object $args Comment settings
@@ -140,18 +192,17 @@
 
 			<article>
 
+				<hr class="margin-top-small margin-bottom-small">
+
 				<?php if ($comment->comment_approved == '0') : // If the comment is held for moderation ?>
 					<p><em><?php _e( 'Your comment is being held for moderation.', 'keel' ) ?></em></p>
 				<?php endif; ?>
 
-				<header class="space-bottom-small group">
-					<figure>
-						<?php if ( $args['avatar_size'] !== 0 ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
-					</figure>
-					<h3 class="no-space">
+				<header class="margin-bottom clearfix">
+					<h3 class="no-margin">
 						<?php comment_author_link() ?>
 					</h3>
-					<aside>
+					<aside class="text-small text-muted">
 						<time datetime="<?php comment_date( 'Y-m-d' ); ?>" pubdate><?php comment_date('F jS, Y') ?></time>
 						<?php edit_comment_link('Edit', ' / ', ''); ?>
 					</aside>
@@ -199,15 +250,15 @@
 				) .
 			'</p>';
 
-		$logged_in_as =
-			'<p>' .
-				sprintf(
-					__( 'Logged in as <a href="%1$s">%2$s</a>. <a href="%3$s">Log out.</a>' ),
-					admin_url( 'profile.php' ),
-					$user_identity,
-					wp_logout_url( apply_filters( 'the_permalink', get_permalink( ) ) )
-				) .
-			'</p>';
+		$logged_in_as = '';
+			// '<p>' .
+			// 	sprintf(
+			// 		__( 'Logged in as <a href="%1$s">%2$s</a>. <a href="%3$s">Log out.</a>' ),
+			// 		admin_url( 'profile.php' ),
+			// 		$user_identity,
+			// 		wp_logout_url( apply_filters( 'the_permalink', get_permalink( ) ) )
+			// 	) .
+			// '</p>';
 
 		$notes_before = '';
 		$notes_after = '';
