@@ -67,7 +67,8 @@
 		<div class="clearfix">
 
 			<?php if ( is_single() && function_exists( 'photoboard_get_zip_file' ) ) : ?>
-				<a class="btn btn-secondary float-right margin-bottom" href="<?php echo photoboard_get_zip_file(); ?>" download>
+				<?php $track_event = 'onClick="_gaq.push([\'_trackEvent\', \'Album\', \'Download\', \'' . get_the_title($post->ID) . '\']);"'; ?>
+				<a class="btn btn-secondary float-right margin-bottom" <?php echo $track_event; ?> href="<?php echo photoboard_get_zip_file(); ?>" download>
 					<svg class="icon">
 						<use xlink:href="#icon-download"></use>
 					</svg>
