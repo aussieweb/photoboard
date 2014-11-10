@@ -94,10 +94,11 @@ var banner = {
 		' */\n\n',
 	min :
 		'/**' +
-		' <%= package.name %> v<%= package.version %>, by Chris Ferdinandi' +
-		' | <%= package.repository.url %>' +
-		' | Licensed under MIT: http://gomakethings.com/mit/' +
-		' */\n',
+		' Credits:' +
+		' http://gomakethings.com,' +
+		' https://github.com/filamentgroup/loadJS,' +
+		' https://github.com/filamentgroup/loadCSS' +
+		' */',
 	theme :
 		'/**\n' +
 		' * Theme Name: <%= package.name %> v<%= package.version %>\n' +

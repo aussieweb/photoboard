@@ -28,12 +28,6 @@
 		<link rel="alternate" type="application/rss+xml" title="<?php printf( __( '%s RSS Feed', 'keel' ), get_bloginfo( 'name' ) ); ?>" href="<?php bloginfo( 'rss2_url' ); ?>">
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
-		<!-- Feature dection -->
-		<script src="<?php echo get_stylesheet_directory_uri(); ?>/dist/js/detects.js"></script>
-
-		<!-- Stylesheet -->
-		<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/dist/css/main.css">
-
 		<?php wp_head(); ?>
 
 	</head>

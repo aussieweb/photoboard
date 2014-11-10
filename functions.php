@@ -9,18 +9,38 @@
 	/**
 	 * Load theme scripts in the footer
 	 */
-	function keel_load_theme_js() {
-		wp_register_script('keel-theme-js', get_template_directory_uri() . '/dist/js/main.js', false, null, true);
-		wp_enqueue_script('keel-theme-js');
+	function keel_load_theme_files() {
+		wp_enqueue_style( 'keel-theme-styles', get_template_directory_uri() . '/dist/css/main.min.11092014.css', null, null, 'all' );
+		wp_enqueue_script( 'keel-theme-scripts', get_template_directory_uri() . '/dist/js/main.min.11092014.js', null, null, true );
 	}
-	add_action('wp_enqueue_scripts', 'keel_load_theme_js');
+	add_action('wp_enqueue_scripts', 'keel_load_theme_files');
+
+
+
+	/**
+	 * Include feature detect inits in the header
+	 */
+	function keel_initialize_theme_detects() {
+		?>
+			<script>
+				<?php echo file_get_contents( get_template_directory_uri() . '/dist/js/loadCSS.min.js' ); ?>
+				<?php echo file_get_contents( get_template_directory_uri() . '/dist/js/loadJS.min.js' ); ?>
+				<?php echo file_get_contents( get_template_directory_uri() . '/dist/js/detects.min.js' ); ?>
+				loadCSS('http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic');
+			</script>
+		<?php
+	}
+	add_action('wp_head', 'keel_initialize_theme_detects', 30);
 
 
 
 	/**
 	 * Include script inits in the footer
 	 */
-	function keel_initialize_theme_js() {
+	function keel_initialize_theme_scripts() {
+		?>
+			<noscript><link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'></noscript>
+		<?php
 		if ( is_user_logged_in() && !is_singular() ) {
 			?>
 				<script>
@@ -62,7 +82,7 @@
 			<?php
 		}
 	}
-	add_action('wp_footer', 'keel_initialize_theme_js', 30);
+	add_action('wp_footer', 'keel_initialize_theme_scripts', 30);
 
 
 

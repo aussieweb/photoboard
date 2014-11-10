@@ -56,7 +56,7 @@ time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
@@ -330,7 +330,7 @@ a:active {
  * Sets font styles for entire site
  */
 body {
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
   font-size: 100%;
   line-height: 1.5;
   color: #272727;
