@@ -11,6 +11,7 @@
 	font-weight: normal;
 	background-color: $color-primary;
 	border: calc-em(1px) solid $color-primary;
+	border: none;
 	border-radius: calc-em(1px);
 	margin-right: calc-em(5px);
 	margin-bottom: calc-em(5px);
@@ -42,8 +43,8 @@ a .btn:active,
 }
 
 .btn-secondary {
-	background-color: $color-gray-dark;
-	border-color: $color-gray-dark;
+	background-color: $color-tertiary;
+	border-color: $color-tertiary;
 }
 
 .btn-secondary:hover,
@@ -53,8 +54,8 @@ a .btn-secondary:focus,
 .btn-secondary:active,
 a .btn-secondary:active,
 .btn-secondary.active {
-	background-color: darken( $color-gray-dark, 15% );
-	border-color: darken( $color-gray-dark, 15% );
+	background-color: darken( $color-tertiary, 15% );
+	border-color: darken( $color-tertiary, 15% );
 }
 
 .btn:active,

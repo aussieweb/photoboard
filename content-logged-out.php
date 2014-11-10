@@ -10,20 +10,17 @@
 <div class="row">
 	<div class="grid-two-thirds float-center">
 
-		<?php if ( is_page('signup') || is_page('reset-password') ) : ?>
+		<?php
+			// Get logged out user header
+			get_template_part( 'header-logged-out', 'Logged Out Header' );
+		?>
 
+		<article>
 			<header>
-				<h1><?php the_title(); ?></h1>
+				<h2>Login</h2>
 			</header>
-
-			<article>
-				<?php the_content( '<p>' . __( 'Read More...', 'keel' ) . '</p>' ); ?>
-			</article>
-
-		<?php else : ?>
-			<h1>Login</h1>
 			<?php echo wpwebapp_form_login(); ?>
-		<?php endif; ?>
+		</article>
 
 	</div>
 </div>

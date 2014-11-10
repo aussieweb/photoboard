@@ -5,9 +5,6 @@
  * For modifying and expanding core WordPress functionality.
  */
 
-	require_once( dirname( __FILE__) . '/plugins-in-training-helpers.php' );
-	require_once( dirname( __FILE__) . '/plugins-in-training.php' );
-
 
 	/**
 	 * Load theme scripts in the footer
@@ -161,6 +158,8 @@
 	 */
 	$allowedposttags['label']['data-x-ray'] = true;
 	$allowedposttags['label']['data-default'] = true;
+	$allowedposttags['input']['data-x-ray'] = true;
+	$allowedposttags['input']['data-default'] = true;
 	$allowedposttags['input']['type'] = true;
 	$allowedposttags['input']['checked'] = true;
 	$allowedposttags['input']['data-x-ray-toggle'] = true;

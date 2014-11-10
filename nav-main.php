@@ -20,6 +20,16 @@
 		<div class="nav-menu-navbar" id="nav-menu">
 			<?php if ( is_user_logged_in() ) : ?>
 				<ul class="nav-navbar">
+					<?php if ( current_user_can( 'publish_posts' ) ) : ?>
+						<li>
+							<a href="<?php echo admin_url( 'post-new.php' ); ?>">
+								<svg class="icon">
+									<use xlink:href="#icon-upload"></use>
+								</svg>
+								<span class="icon-supporting-text"><?php _e( 'Upload', 'keel' ); ?></span>
+							</a>
+						</li>
+					<?php endif; ?>
 					<li <?php if (is_front_page() || is_single()) { echo 'class="active"'; }?>>
 						<a href="<?php echo site_url(); ?>/">
 							<svg class="icon">

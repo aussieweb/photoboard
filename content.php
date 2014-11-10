@@ -17,7 +17,13 @@
 			 * Linked h1 for collections of posts.
 			 */
 		?>
-		<?php if ( is_single() ) : ?>
+		<?php if ( is_page('signup') || is_page('reset-password') ) : ?>
+			<?php
+				// Get logged out user header
+				get_template_part( 'header-logged-out', 'Logged Out Header' );
+			?>
+			<h2 class="no-margin-bottom"><?php the_title(); ?></h2>
+		<?php elseif ( is_single() ) : ?>
 			<h1 class="no-margin-bottom"><?php the_title(); ?></h1>
 		<?php elseif ( is_page() ) : ?>
 			<?php if ( !is_page_template( 'page-plain.php' ) ) : ?>
@@ -60,8 +66,8 @@
 
 		<div class="clearfix">
 
-			<?php if ( is_single() ) : ?>
-				<a class="btn float-right" href="<?php echo photoboard_get_zip_file(); ?>" download>
+			<?php if ( is_single() && function_exists( 'photoboard_get_zip_file' ) ) : ?>
+				<a class="btn btn-secondary float-right margin-bottom" href="<?php echo photoboard_get_zip_file(); ?>" download>
 					<svg class="icon">
 						<use xlink:href="#icon-download"></use>
 					</svg>
@@ -70,8 +76,8 @@
 			<?php endif; ?>
 			<?php the_content( '<p>' . __( 'Read More...', 'keel' ) . '</p>' ); ?>
 		</div>
-		<?php echo photoboard_get_post_imgs($post->ID); ?>
-		<?php echo photoboard_get_post_vids($post->ID); ?>
+		<?php if ( function_exists( 'photoboard_get_post_imgs' ) ) { echo photoboard_get_post_imgs($post->ID); } ?>
+		<?php if ( function_exists( 'photoboard_get_post_vids' ) ) { echo photoboard_get_post_vids($post->ID); } ?>
 
 	<?php endif; ?>
 

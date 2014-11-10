@@ -19,6 +19,10 @@
 
 		<!-- Icons: place in the root directory -->
 		<!-- https://github.com/audreyr/favicon-cheat-sheet -->
+		<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/dist/img/favicon.ico" />
+		<link rel="apple-touch-icon" href="<?php echo get_stylesheet_directory_uri(); ?>/dist/img/favicon-144.png">
+		<meta name="msapplication-TileColor" content="#97c331">
+		<meta name="msapplication-TileImage" content="<?php echo get_stylesheet_directory_uri(); ?>/dist/img/favicon-ms.png">
 
 		<!-- Feeds & Pings -->
 		<link rel="alternate" type="application/rss+xml" title="<?php printf( __( '%s RSS Feed', 'keel' ), get_bloginfo( 'name' ) ); ?>" href="<?php bloginfo( 'rss2_url' ); ?>">

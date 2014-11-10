@@ -1,5 +1,5 @@
 /**
- * photoboard v0.0.1
+ * photoboard v1.0.0
  * Theme for the Photoboard app, by Chris Ferdinandi.
  * http://github.com/cferdinandi/photoboard
  * 
@@ -458,15 +458,6 @@ if ("document" in self && !("classList" in document.createElement("_"))) {
 	return rightHeight;
 
 });
-/**
- * x-ray v4.5.2
- * A script to toggle password visibility, by Chris Ferdinandi.
- * http://github.com/cferdinandi/x-ray
- * 
- * Free to use under the MIT License.
- * http://gomakethings.com/mit/
- */
-
 (function (root, factory) {
 	if ( typeof define === 'function' && define.amd ) {
 		define('xray', factory(root));
@@ -716,7 +707,6 @@ if ("document" in self && !("classList" in document.createElement("_"))) {
 
 		// Listen for click events
 		document.addEventListener('click', eventHandler, false);
-		document.addEventListener('change', eventHandler, false);
 
 	};
 

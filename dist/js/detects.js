@@ -1,5 +1,5 @@
 /**
- * photoboard v0.0.1
+ * photoboard v1.0.0
  * Theme for the Photoboard app, by Chris Ferdinandi.
  * http://github.com/cferdinandi/photoboard
  * 
