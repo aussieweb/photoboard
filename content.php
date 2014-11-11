@@ -33,7 +33,7 @@
 			<a href="<?php the_permalink(); ?>">
 				<?php if ( !is_singular() ) : ?>
 					<figure>
-						<?php photoboard_get_album_thumbnail(); ?>
+						<?php photoboard_get_album_thumbnail( $post->ID ); ?>
 					</figure>
 				<?php endif; ?>
 				<h1 class="no-margin-bottom <?php if ( !is_singular() ) { echo 'h4'; } ?>"><?php the_title(); ?></h1>
