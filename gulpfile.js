@@ -97,7 +97,8 @@ var banner = {
 		' Credits:' +
 		' http://gomakethings.com,' +
 		' https://github.com/filamentgroup/loadJS,' +
-		' https://github.com/filamentgroup/loadCSS' +
+		' https://github.com/filamentgroup/loadCSS,' +
+		' https://gist.github.com/irae/1042167' +
 		' */',
 	theme :
 		'/**\n' +

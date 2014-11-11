@@ -10,8 +10,8 @@
 	 * Load theme scripts in the footer
 	 */
 	function keel_load_theme_files() {
-		wp_enqueue_style( 'keel-theme-styles', get_template_directory_uri() . '/dist/css/main.min.11092014.css', null, null, 'all' );
-		wp_enqueue_script( 'keel-theme-scripts', get_template_directory_uri() . '/dist/js/main.min.11092014.js', null, null, true );
+		wp_enqueue_style( 'keel-theme-styles', get_template_directory_uri() . '/dist/css/main.min.11102014.css', null, null, 'all' );
+		wp_enqueue_script( 'keel-theme-scripts', get_template_directory_uri() . '/dist/js/main.min.11102014.js', null, null, true );
 	}
 	add_action('wp_enqueue_scripts', 'keel_load_theme_files');
 
@@ -40,6 +40,9 @@
 	function keel_initialize_theme_scripts() {
 		?>
 			<noscript><link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'></noscript>
+			<script>
+				<?php echo file_get_contents( get_template_directory_uri() . '/dist/js/stayStandalone.min.js' ); ?>
+			</script>
 		<?php
 		if ( is_user_logged_in() && !is_singular() ) {
 			?>
