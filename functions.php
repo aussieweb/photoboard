@@ -10,8 +10,8 @@
 	 * Load theme scripts in the footer
 	 */
 	function keel_load_theme_files() {
-		wp_enqueue_style( 'keel-theme-styles', get_template_directory_uri() . '/dist/css/main.min.11102014.css', null, null, 'all' );
-		wp_enqueue_script( 'keel-theme-scripts', get_template_directory_uri() . '/dist/js/main.min.11102014.js', null, null, true );
+		wp_enqueue_style( 'keel-theme-styles', get_template_directory_uri() . '/dist/css/main.min.11112014.css', null, null, 'all' );
+		wp_enqueue_script( 'keel-theme-scripts', get_template_directory_uri() . '/dist/js/main.min.11112014.js', null, null, true );
 	}
 	add_action('wp_enqueue_scripts', 'keel_load_theme_files');
 

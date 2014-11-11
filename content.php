@@ -33,7 +33,7 @@
 			<a href="<?php the_permalink(); ?>">
 				<?php if ( !is_singular() ) : ?>
 					<figure>
-						<?php the_post_thumbnail( 'thumbnail', 'class=img-photo' ); ?>
+						<?php photoboard_get_album_thumbnail(); ?>
 					</figure>
 				<?php endif; ?>
 				<h1 class="no-margin-bottom <?php if ( !is_singular() ) { echo 'h4'; } ?>"><?php the_title(); ?></h1>
@@ -77,8 +77,10 @@
 			<?php endif; ?>
 			<?php the_content( '<p>' . __( 'Read More...', 'keel' ) . '</p>' ); ?>
 		</div>
-		<?php if ( function_exists( 'photoboard_get_post_imgs' ) ) { echo photoboard_get_post_imgs($post->ID); } ?>
-		<?php if ( function_exists( 'photoboard_get_post_vids' ) ) { echo photoboard_get_post_vids($post->ID); } ?>
+		<?php if ( is_single() ) : ?>
+			<?php if ( function_exists( 'photoboard_get_post_imgs' ) ) { echo photoboard_get_post_imgs($post->ID); } ?>
+			<?php if ( function_exists( 'photoboard_get_post_vids' ) ) { echo photoboard_get_post_vids($post->ID); } ?>
+		<?php endif; ?>
 
 	<?php endif; ?>
 

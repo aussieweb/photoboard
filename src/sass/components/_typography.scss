@@ -60,6 +60,13 @@ a:hover img {
 	filter: alpha(opacity=80);
 }
 
+.link-disabled,
+.link-disabled:visited {
+	color: $color-gray-dark;
+	cursor: not-allowed;
+	pointer-events: none;
+}
+
 
 /**
  * List styling

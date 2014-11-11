@@ -1,5 +1,5 @@
 /**
- * photoboard v1.1.0
+ * photoboard v1.2.0
  * Theme for the Photoboard app, by Chris Ferdinandi.
  * http://github.com/cferdinandi/photoboard
  * 
@@ -377,6 +377,13 @@ a:hover img {
   background: none;
   opacity: 0.8;
   filter: alpha(opacity=80);
+}
+
+.link-disabled,
+.link-disabled:visited {
+  color: #808080;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 /**
