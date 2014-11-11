@@ -1,5 +1,5 @@
 /**
- * photoboard v1.2.0
+ * photoboard v1.3.0
  * Theme for the Photoboard app, by Chris Ferdinandi.
  * http://github.com/cferdinandi/photoboard
  * 
@@ -1047,6 +1047,18 @@ a:hover .img-photo {
 
 /* Adds a 50% border radius,
  * turning square images into a circle. */
+.hero {
+  background-color: #f7f7f7;
+  margin-bottom: 1.5625em;
+  padding: 1.5em;
+  border: 0.0725em solid #e5e5e5;
+  border-radius: 0.0725em;
+}
+
+.hero-condensed {
+  padding: 0.9375em;
+}
+
 .alert {
   color: #257aa4;
   background-color: #d9ecf6;
