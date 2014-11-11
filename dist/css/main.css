@@ -1,5 +1,5 @@
 /**
- * photoboard v0.0.1
+ * photoboard v1.3.0
  * Theme for the Photoboard app, by Chris Ferdinandi.
  * http://github.com/cferdinandi/photoboard
  * 
@@ -56,7 +56,7 @@ time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
@@ -315,12 +315,12 @@ a:active {
     width: 50%;
   }
 }
-@media (min-width: 30em) {
+@media (min-width: 40em) {
   .grid-dynamic {
     width: 33.33333%;
   }
 }
-@media (min-width: 40em) {
+@media (min-width: 60em) {
   .grid-dynamic {
     width: 25%;
   }
@@ -330,7 +330,7 @@ a:active {
  * Sets font styles for entire site
  */
 body {
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
   font-size: 100%;
   line-height: 1.5;
   color: #272727;
@@ -351,7 +351,7 @@ p {
  */
 a,
 a:visited {
-  color: #0088cc;
+  color: #42a4d4;
   text-decoration: none;
   word-wrap: break-word;
 }
@@ -359,7 +359,7 @@ a:visited {
 a:hover,
 a:focus,
 a:active {
-  color: #005580;
+  color: #257aa4;
   text-decoration: underline;
 }
 
@@ -377,6 +377,13 @@ a:hover img {
   background: none;
   opacity: 0.8;
   filter: alpha(opacity=80);
+}
+
+.link-disabled,
+.link-disabled:visited {
+  color: #808080;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 /**
@@ -514,11 +521,11 @@ sub {
  */
 ::-moz-selection {
   color: #ffffff;
-  background: #0088cc;
+  background: #42a4d4;
 }
 ::selection {
   color: #ffffff;
-  background: #0088cc;
+  background: #42a4d4;
 }
 
 /**
@@ -590,8 +597,9 @@ pre code {
   padding: 0.5em 0.6875em;
   line-height: 1.2;
   font-weight: normal;
-  background-color: #0088cc;
-  border: 0.0725em solid #0088cc;
+  background-color: #42a4d4;
+  border: 0.0725em solid #42a4d4;
+  border: none;
   border-radius: 0.0725em;
   margin-right: 0.3125em;
   margin-bottom: 0.3125em;
@@ -632,14 +640,14 @@ a .btn:active,
 a #submit:active,
 .btn.active,
 .active#submit {
-  background-color: #005580;
-  border-color: #005580;
+  background-color: #257aa4;
+  border-color: #257aa4;
   text-decoration: none;
 }
 
 .btn-secondary {
-  background-color: #808080;
-  border-color: #808080;
+  background-color: #ef6230;
+  border-color: #ef6230;
 }
 
 .btn-secondary:hover,
@@ -649,8 +657,8 @@ a .btn-secondary:focus,
 .btn-secondary:active,
 a .btn-secondary:active,
 .btn-secondary.active {
-  background-color: #5a5a5a;
-  border-color: #5a5a5a;
+  background-color: #c33e0f;
+  border-color: #c33e0f;
 }
 
 .btn:active, #submit:active,
@@ -833,7 +841,7 @@ select:focus {
 /**
  * Hide fallback text if browser supports SVG
  */
-@media (max-width: 40em) {
+@media (max-width: 60em) {
   .svg .icon-supporting-text {
     border: 0;
     clip: rect(0 0 0 0);
@@ -916,7 +924,7 @@ select:focus {
  * If .logo and .nav don't align properly,
  * adjust the .logo line-height. */
 .nav-wrap-navbar {
-  background-color: #0088cc;
+  background-color: #42a4d4;
   padding-top: 0.25em;
   padding-bottom: 0.25em;
 }
@@ -959,13 +967,13 @@ a.logo-navbar {
 
 .nav-navbar > li > a:hover {
   color: #e5e5e5;
-  border-bottom: 0.1875em solid #006699;
+  border-bottom: 0.1875em solid #257aa4;
   text-decoration: none;
 }
 
 /* Active link styling */
 .nav-navbar > li.active > a {
-  border-bottom: 0.1875em solid #006699;
+  border-bottom: 0.1875em solid #257aa4;
 }
 
 /* Hide the navigation toggle menu button by default.
@@ -995,7 +1003,7 @@ a.logo-navbar {
   padding-bottom: 0.25em;
 }
 
-@media (max-width: 40em) {
+@media (max-width: 60em) {
   .svg .nav-wrap-navbar {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
@@ -1039,19 +1047,31 @@ a:hover .img-photo {
 
 /* Adds a 50% border radius,
  * turning square images into a circle. */
+.hero {
+  background-color: #f7f7f7;
+  margin-bottom: 1.5625em;
+  padding: 1.5em;
+  border: 0.0725em solid #e5e5e5;
+  border-radius: 0.0725em;
+}
+
+.hero-condensed {
+  padding: 0.9375em;
+}
+
 .alert {
-  color: #005580;
-  background-color: #cce7f4;
-  border: 0.0725em solid #a5d5ed;
+  color: #257aa4;
+  background-color: #d9ecf6;
+  border: 0.0725em solid #bcdfef;
   margin-bottom: 1.5625em;
   padding: 0.25em 0.5em;
   border-radius: 0.0725em;
 }
 
 .alert-success {
-  color: #1f481c;
-  background-color: #d7e5d5;
-  border-color: #b9d2b6;
+  color: #007104;
+  background-color: #ccf1cd;
+  border-color: #a5e7a7;
 }
 
 .alert-danger {
@@ -1139,7 +1159,7 @@ a:hover .img-photo {
  * Background Colors
  */
 .bg-primary {
-  background-color: #0088cc;
+  background-color: #42a4d4;
 }
 
 /**

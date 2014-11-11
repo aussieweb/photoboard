@@ -17,7 +17,13 @@
 			 * Linked h1 for collections of posts.
 			 */
 		?>
-		<?php if ( is_single() ) : ?>
+		<?php if ( is_page('signup') || is_page('reset-password') ) : ?>
+			<?php
+				// Get logged out user header
+				get_template_part( 'header-logged-out', 'Logged Out Header' );
+			?>
+			<h2 class="no-margin-bottom"><?php the_title(); ?></h2>
+		<?php elseif ( is_single() ) : ?>
 			<h1 class="no-margin-bottom"><?php the_title(); ?></h1>
 		<?php elseif ( is_page() ) : ?>
 			<?php if ( !is_page_template( 'page-plain.php' ) ) : ?>
@@ -27,7 +33,7 @@
 			<a href="<?php the_permalink(); ?>">
 				<?php if ( !is_singular() ) : ?>
 					<figure>
-						<?php the_post_thumbnail( 'thumbnail', 'class=img-photo' ); ?>
+						<?php photoboard_get_album_thumbnail( $post->ID ); ?>
 					</figure>
 				<?php endif; ?>
 				<h1 class="no-margin-bottom <?php if ( !is_singular() ) { echo 'h4'; } ?>"><?php the_title(); ?></h1>
@@ -60,8 +66,9 @@
 
 		<div class="clearfix">
 
-			<?php if ( is_single() ) : ?>
-				<a class="btn float-right" href="#">
+			<?php if ( is_single() && get_post_meta( $post->ID ) !== '' ) : ?>
+				<?php $track_event = 'onClick="_gaq.push([\'_trackEvent\', \'Album\', \'Download\', \'' . get_the_title($post->ID) . '\']);"'; ?>
+				<a class="btn btn-secondary float-right margin-bottom" <?php echo $track_event; ?> href="<?php echo wp_get_attachment_url( get_post_meta( $post->ID, 'photoboard_download_zip', true ) ); ?>" download>
 					<svg class="icon">
 						<use xlink:href="#icon-download"></use>
 					</svg>
@@ -70,8 +77,10 @@
 			<?php endif; ?>
 			<?php the_content( '<p>' . __( 'Read More...', 'keel' ) . '</p>' ); ?>
 		</div>
-		<?php echo photoboard_get_post_imgs($post->ID); ?>
-		<?php echo photoboard_get_post_vids($post->ID); ?>
+		<?php if ( is_single() ) : ?>
+			<?php if ( function_exists( 'photoboard_get_post_imgs' ) ) { echo photoboard_get_post_imgs($post->ID); } ?>
+			<?php if ( function_exists( 'photoboard_get_post_vids' ) ) { echo photoboard_get_post_vids($post->ID); } ?>
+		<?php endif; ?>
 
 	<?php endif; ?>
 

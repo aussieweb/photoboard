@@ -31,7 +31,7 @@
 	@extend .screen-reader;
 }
 
-@media (max-width: $bp-medium) {
+@media (max-width: $bp-large) {
 	.svg .icon-supporting-text {
 		border: 0;
 		clip: rect(0 0 0 0);

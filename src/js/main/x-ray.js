@@ -1,12 +1,3 @@
-/**
- * x-ray v4.5.2
- * A script to toggle password visibility, by Chris Ferdinandi.
- * http://github.com/cferdinandi/x-ray
- * 
- * Free to use under the MIT License.
- * http://gomakethings.com/mit/
- */
-
 (function (root, factory) {
 	if ( typeof define === 'function' && define.amd ) {
 		define('xray', factory(root));
@@ -256,7 +247,6 @@
 
 		// Listen for click events
 		document.addEventListener('click', eventHandler, false);
-		document.addEventListener('change', eventHandler, false);
 
 	};
 

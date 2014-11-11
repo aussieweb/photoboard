@@ -9,9 +9,9 @@
 	if ( supports ) {
 		document.documentElement.className += (document.documentElement.className ? ' ' : '') + 'html5-video';
 	} else {
-		loadAsync.css('//releases.flowplayer.org/5.5.0/skin/minimalist.css');
-		loadAsync.js('//code.jquery.com/jquery-1.11.0.min.js');
-		loadAsync.js('//releases.flowplayer.org/5.5.0/flowplayer.min.js');
+		loadCSS('//releases.flowplayer.org/5.5.0/skin/minimalist.css');
+		loadJS('//code.jquery.com/jquery-1.11.0.min.js');
+		loadJS('//releases.flowplayer.org/5.5.0/flowplayer.min.js');
 	}
 
 
