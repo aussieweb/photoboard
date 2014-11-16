@@ -21,7 +21,7 @@
 			</p>
 
 			<?php if ( current_user_can( 'edit_themes' ) ) : ?>
-				<a href="<?php echo admin_url(); ?>">WP Admin</a>
+				<p><a href="<?php echo admin_url(); ?>">WP Admin</a></p>
 			<?php endif; ?>
 
 		</footer>
