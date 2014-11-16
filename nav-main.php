@@ -46,7 +46,7 @@
 							<span class="icon-supporting-text"><?php _e( 'Notifications', 'keel' ); ?></span>
 						</a>
 					</li>
-					<li <?php if (is_page('profile')) { echo 'class="active"'; }?>>
+					<li <?php if (  is_page( 'change-password' ) || is_page( 'change-email' ) ) { echo 'class="active"'; }?>>
 						<a href="<?php echo site_url(); ?>/change-password">
 							<svg class="icon">
 								<use xlink:href="#icon-gear"></use>
