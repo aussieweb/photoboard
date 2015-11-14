@@ -1,10 +1,8 @@
-/**
- * photoboard v1.3.2
- * Theme for the Photoboard app, by Chris Ferdinandi.
+/*!
+ * photoboard v1.4.1: Theme for the Photoboard app
+ * (c) 2015 Chris Ferdinandi
+ * MIT License
  * http://github.com/cferdinandi/photoboard
- * 
- * Free to use under the MIT License.
- * http://gomakethings.com/mit/
  */
 
 /**
@@ -21,25 +19,31 @@
   width: device-width;
   zoom: 1.0;
 }
+
 @-moz-viewport {
   width: device-width;
   zoom: 1.0;
 }
+
 @-ms-viewport {
   width: device-width;
   zoom: 1.0;
 }
+
 @-o-viewport {
   width: device-width;
   zoom: 1.0;
 }
+
 @viewport {
   width: device-width;
   zoom: 1.0;
 }
+
 /**
  * Remove browser defaults
  */
+/* line 21, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_reset.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -66,17 +70,17 @@ time, mark, audio, video {
  * Add box sizing to everything
  * @link http://www.paulirish.com/2012/box-sizing-border-box-ftw/
  */
+/* line 47, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_reset.scss */
 *,
 *:before,
 *:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 /**
  * Set display type for HTML5 semantic elements
  */
+/* line 56, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_reset.scss */
 article,
 aside,
 details,
@@ -97,6 +101,7 @@ summary {
  * Force scrollbar display to prevent jumping on pages.
  * Fix text resize bug on mobile devices.
  */
+/* line 76, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_reset.scss */
 html {
   overflow-y: scroll;
   -webkit-text-size-adjust: 100%;
@@ -106,6 +111,7 @@ html {
 /**
  * Display audio, canvas, and video elements as inline block elements.
  */
+/* line 85, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_reset.scss */
 audio,
 canvas,
 video {
@@ -115,6 +121,7 @@ video {
 /**
  * Prevent modern browsers from displaying audio without controls.
  */
+/* line 94, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_reset.scss */
 audio:not([controls]) {
   display: none;
   height: 0;
@@ -123,6 +130,7 @@ audio:not([controls]) {
 /**
  * Prevent img and video elements from spilling outside of the page on smaller screens.
  */
+/* line 102, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_reset.scss */
 img,
 video {
   max-width: 100%;
@@ -133,6 +141,7 @@ video {
  * Prevent iframe, object, and embed elements from spilling outside of the page on smaller screens.
  * height: auto causes iframes to smush, so it's omitted here.
  */
+/* line 112, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_reset.scss */
 iframe,
 object,
 embed {
@@ -142,6 +151,7 @@ embed {
 /**
  * Hide the template element in IE, Safari, and Firefox < 22.
  */
+/* line 121, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_reset.scss */
 template {
   display: none;
   visibility: hidden;
@@ -150,6 +160,7 @@ template {
 /**
  * Prevents IE from making scaled images look like crap
  */
+/* line 129, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_reset.scss */
 img {
   -ms-interpolation-mode: bicubic;
 }
@@ -157,6 +168,7 @@ img {
 /**
  * Address outline inconsistency between Chrome and other browsers.
  */
+/* line 136, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_reset.scss */
 a:focus,
 button:focus {
   outline: thin dotted;
@@ -167,6 +179,7 @@ button:focus {
 /**
  * Improve readability when focused and also mouse hovered in all browsers.
  */
+/* line 146, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_reset.scss */
 a:hover,
 a:active {
   outline: 0;
@@ -179,6 +192,7 @@ a:active {
 /**
  * Base grid styles: single column
  */
+/* line 9, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
 .container {
   max-width: 80em;
   width: 88%;
@@ -186,11 +200,13 @@ a:active {
   margin-right: auto;
 }
 
+/* line 16, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
 .row {
   margin-left: -1.4%;
   margin-right: -1.4%;
 }
 
+/* line 21, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
 .grid-fourth, .grid-third, .grid-half, .grid-two-thirds, .grid-three-fourths, .grid-full, .grid-dynamic {
   float: left;
   width: 100%;
@@ -201,6 +217,7 @@ a:active {
 /**
  * Reverses order of grid for content choreography
  */
+/* line 38, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
 .grid-flip {
   float: right;
 }
@@ -209,126 +226,139 @@ a:active {
  * Add columns to grid on bigger screens
  */
 @media (min-width: 20em) {
+  /* line 49, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .row-start-xsmall .grid-fourth {
     width: 25%;
   }
-
+  /* line 49, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .row-start-xsmall .grid-third {
     width: 33.33333%;
   }
-
+  /* line 49, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .row-start-xsmall .grid-half {
     width: 50%;
   }
-
+  /* line 49, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .row-start-xsmall .grid-two-thirds {
     width: 66.66667%;
   }
-
+  /* line 49, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .row-start-xsmall .grid-three-fourths {
     width: 75%;
   }
-
+  /* line 49, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .row-start-xsmall .grid-full {
     width: 100%;
   }
 }
+
 @media (min-width: 30em) {
+  /* line 49, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .row-start-small .grid-fourth {
     width: 25%;
   }
-
+  /* line 49, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .row-start-small .grid-third {
     width: 33.33333%;
   }
-
+  /* line 49, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .row-start-small .grid-half {
     width: 50%;
   }
-
+  /* line 49, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .row-start-small .grid-two-thirds {
     width: 66.66667%;
   }
-
+  /* line 49, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .row-start-small .grid-three-fourths {
     width: 75%;
   }
-
+  /* line 49, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .row-start-small .grid-full {
     width: 100%;
   }
 }
+
 @media (min-width: 40em) {
+  /* line 49, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .grid-fourth {
     width: 25%;
   }
-
+  /* line 49, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .grid-third {
     width: 33.33333%;
   }
-
+  /* line 49, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .grid-half {
     width: 50%;
   }
-
+  /* line 49, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .grid-two-thirds {
     width: 66.66667%;
   }
-
+  /* line 49, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .grid-three-fourths {
     width: 75%;
   }
-
+  /* line 49, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .grid-full {
     width: 100%;
   }
-
+  /* line 55, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .offset-fourth {
     margin-left: 25%;
   }
-
+  /* line 55, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .offset-third {
     margin-left: 33.33333%;
   }
-
+  /* line 55, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .offset-half {
     margin-left: 50%;
   }
-
+  /* line 55, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .offset-two-thirds {
     margin-left: 66.66667%;
   }
-
+  /* line 55, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .offset-three-fourths {
     margin-left: 75%;
   }
-
+  /* line 55, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .offset-full {
     margin-left: 100%;
   }
 }
+
 /**
  * Dynamic grid
  */
 @media (min-width: 20em) {
+  /* line 71, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .grid-dynamic {
     width: 50%;
   }
 }
+
 @media (min-width: 40em) {
+  /* line 71, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .grid-dynamic {
     width: 33.33333%;
   }
 }
+
 @media (min-width: 60em) {
+  /* line 71, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
   .grid-dynamic {
     width: 25%;
   }
 }
+
 /**
  * @section Typography
  * Sets font styles for entire site
  */
+/* line 6, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 body {
   font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
   font-size: 100%;
@@ -336,12 +366,15 @@ body {
   color: #272727;
   background: #ffffff;
 }
+
 @media (min-width: 40em) {
+  /* line 6, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
   body {
     line-height: 1.5625;
   }
 }
 
+/* line 24, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 p {
   margin-bottom: 1.5625em;
 }
@@ -349,6 +382,7 @@ p {
 /**
  * Hyperlink styling
  */
+/* line 33, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 a,
 a:visited {
   color: #42a4d4;
@@ -356,6 +390,7 @@ a:visited {
   word-wrap: break-word;
 }
 
+/* line 40, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 a:hover,
 a:focus,
 a:active {
@@ -363,6 +398,7 @@ a:active {
   text-decoration: underline;
 }
 
+/* line 47, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 a img {
   border: none;
   background: none;
@@ -372,6 +408,7 @@ a img {
  * Prevents border/background on linked image hover.
  * Adds slight opacity.
  */
+/* line 56, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 a:hover img {
   border: none;
   background: none;
@@ -379,6 +416,7 @@ a:hover img {
   filter: alpha(opacity=80);
 }
 
+/* line 63, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 .link-disabled,
 .link-disabled:visited {
   color: #808080;
@@ -389,6 +427,7 @@ a:hover img {
 /**
  * List styling
  */
+/* line 75, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 ul,
 ol,
 dl {
@@ -396,6 +435,7 @@ dl {
   margin-left: 2em;
 }
 
+/* line 82, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 ul ul,
 ul ol,
 ol ol,
@@ -403,10 +443,12 @@ ol ul {
   margin-bottom: 0;
 }
 
+/* line 89, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 dl {
   margin-left: 0;
 }
 
+/* line 93, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 dt {
   font-weight: bold;
 }
@@ -415,6 +457,7 @@ dt {
  * Removes list styling.
  * For semantic reasons, should only be used on unordered lists.
  */
+/* line 101, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 .list-unstyled {
   margin-left: 0;
   list-style: none;
@@ -423,6 +466,7 @@ dt {
 /**
  * Display lists on a single line.
  */
+/* line 110, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 .list-inline {
   list-style: none;
   margin-left: -0.5em;
@@ -430,6 +474,7 @@ dt {
   padding: 0;
 }
 
+/* line 117, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 .list-inline > li {
   display: inline-block;
   margin-left: 0.5em;
@@ -440,6 +485,7 @@ dt {
  * Heading styling for h1 through h6 elements.
  * Heading class lets you use one heading type for semantics, but style it as another heading type.
  */
+/* line 129, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   font-weight: normal;
@@ -448,33 +494,40 @@ h1, h2, h3, h4, h5, h6 {
   word-wrap: break-word;
 }
 
+/* line 137, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 h1,
 .h1 {
   font-size: 1.5em;
   padding-top: .5em;
 }
+
 @media (min-width: 40em) {
+  /* line 137, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
   h1,
   .h1 {
     font-size: 1.75em;
   }
 }
 
+/* line 147, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 h2,
 .h2 {
   font-size: 1.3125em;
 }
 
+/* line 152, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 h3,
 .h3 {
   font-size: 1.1875em;
 }
 
+/* line 157, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 h4, h5, h6,
 .h4, .h5, .h6 {
   font-size: 0.9375em;
 }
 
+/* line 162, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 h4,
 .h4 {
   text-transform: uppercase;
@@ -483,6 +536,7 @@ h4,
 /**
  * Lines, Quotes and Emphasis
  */
+/* line 172, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 hr {
   margin: 2em auto;
   border: 0;
@@ -490,14 +544,17 @@ hr {
   border-bottom: 0 solid #ffffff;
 }
 
+/* line 179, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 strong {
   font-weight: bold;
 }
 
+/* line 183, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 em {
   font-style: italic;
 }
 
+/* line 187, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 sub,
 sup {
   position: relative;
@@ -508,10 +565,12 @@ sup {
   margin-left: 0.25em;
 }
 
+/* line 197, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 sup {
   top: -0.5em;
 }
 
+/* line 201, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 sub {
   bottom: -0.25em;
 }
@@ -519,6 +578,7 @@ sub {
 /**
  * Highlighting colors
  */
+/* line 208, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 ::-moz-selection {
   color: #ffffff;
   background: #42a4d4;
@@ -531,6 +591,7 @@ sub {
 /**
  * Blockquotes
  */
+/* line 217, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 blockquote {
   border-left: 0.25em solid #e5e5e5;
   margin-bottom: 1.5625em;
@@ -538,10 +599,12 @@ blockquote {
   padding-right: 1.5625em;
 }
 
+/* line 224, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 blockquote, q {
   quotes: none;
 }
 
+/* line 228, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_typography.scss */
 blockquote:before,
 blockquote:after,
 q:before,
@@ -554,6 +617,7 @@ q:after {
  * @section Code
  * Styling for code and preformatted text.
  */
+/* line 6, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_code.scss */
 code,
 pre {
   font-family: Menlo, Monaco, "Courier New", monospace;
@@ -561,12 +625,14 @@ pre {
   border-radius: 0.0725em;
 }
 
+/* line 13, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_code.scss */
 code {
   color: #dd1144;
   background-color: #f7f7f7;
   padding: 0.25em;
 }
 
+/* line 19, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_code.scss */
 pre {
   display: block;
   margin-bottom: 1.5625em;
@@ -574,11 +640,13 @@ pre {
   background-color: #f4f4f4;
   padding: 0.8125em;
   -moz-tab-size: 4;
-  tab-size: 4;
+    -o-tab-size: 4;
+       tab-size: 4;
   white-space: pre-wrap;
   word-break: break-all;
 }
 
+/* line 30, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_code.scss */
 pre code {
   font-size: 1em;
   padding: 0;
@@ -591,6 +659,7 @@ pre code {
  * @section Buttons
  * Styling for CSS buttons.
  */
+/* line 6, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_buttons.scss */
 .btn, #submit {
   display: inline-block;
   font-size: 0.9375em;
@@ -605,6 +674,7 @@ pre code {
   margin-bottom: 0.3125em;
 }
 
+/* line 20, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_buttons.scss */
 .btn, #submit,
 .btn:visited,
 #submit:visited,
@@ -627,6 +697,7 @@ a #submit:active,
   color: #ffffff;
 }
 
+/* line 33, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_buttons.scss */
 .btn:hover, #submit:hover,
 a .btn:hover,
 a #submit:hover,
@@ -645,11 +716,13 @@ a #submit:active,
   text-decoration: none;
 }
 
+/* line 45, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_buttons.scss */
 .btn-secondary {
   background-color: #ef6230;
   border-color: #ef6230;
 }
 
+/* line 50, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_buttons.scss */
 .btn-secondary:hover,
 a .btn-secondary:hover,
 .btn-secondary:focus,
@@ -661,14 +734,15 @@ a .btn-secondary:active,
   border-color: #c33e0f;
 }
 
+/* line 61, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_buttons.scss */
 .btn:active, #submit:active,
 .btn.active,
 .active#submit {
-  -webkit-box-shadow: inset 0 0.15625em 0.25em rgba(0, 0, 0, 0.15), 0 0.0725em 0.15625em rgba(0, 0, 0, 0.05);
   box-shadow: inset 0 0.15625em 0.25em rgba(0, 0, 0, 0.15), 0 0.0725em 0.15625em rgba(0, 0, 0, 0.05);
   outline: 0;
 }
 
+/* line 67, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_buttons.scss */
 .btn.disabled, .disabled#submit,
 .btn[disabled],
 [disabled]#submit {
@@ -676,16 +750,17 @@ a .btn-secondary:active,
   cursor: not-allowed;
   opacity: 0.5;
   filter: alpha(opacity=50);
-  -webkit-box-shadow: none;
   box-shadow: none;
 }
 
+/* line 76, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_buttons.scss */
 .btn-large {
   padding: 0.6875em 0.9375em;
   font-size: 1em;
   line-height: normal;
 }
 
+/* line 82, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_buttons.scss */
 .btn-block,
 input[type="submit"].btn-block,
 input[type="reset"].btn-block,
@@ -697,6 +772,7 @@ input[type="button"].btn-block {
   padding-left: 0;
 }
 
+/* line 93, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_buttons.scss */
 button,
 .btn,
 #submit {
@@ -704,13 +780,14 @@ button,
   text-align: center;
   vertical-align: middle;
   /**
-   * @workaround Override default button styling
-   * @affected Webkit/Firefox
-   */
+	 * @workaround Override default button styling
+	 * @affected Webkit/Firefox
+	 */
   background-image: none;
   -webkit-appearance: none;
 }
 
+/* line 106, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_buttons.scss */
 .btn:last-child, #submit:last-child,
 input.btn,
 input#submit {
@@ -721,11 +798,13 @@ input#submit {
  * @section Forms
  * Styling for form elements.
  */
+/* line 6, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_forms.scss */
 form,
 fieldset {
   margin-bottom: 1.5625em;
 }
 
+/* line 11, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_forms.scss */
 legend,
 label {
   display: block;
@@ -734,6 +813,7 @@ label {
   margin-bottom: 0.3125em;
 }
 
+/* line 19, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_forms.scss */
 input,
 textarea,
 select {
@@ -747,7 +827,9 @@ select {
   border: 0.0725em solid #b8b8b8;
   border-radius: 0.0725em;
 }
+
 @media (min-width: 40em) {
+  /* line 19, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_forms.scss */
   input,
   textarea,
   select {
@@ -755,15 +837,18 @@ select {
   }
 }
 
+/* line 37, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_forms.scss */
 form button,
 form .button {
   margin-bottom: 1.1875em;
 }
 
+/* line 42, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_forms.scss */
 textarea {
   height: 12em;
 }
 
+/* line 46, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_forms.scss */
 input[type="image"],
 input[type="checkbox"],
 input[type="radio"] {
@@ -775,15 +860,16 @@ input[type="radio"] {
   cursor: pointer;
 }
 
+/* line 57, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_forms.scss */
 input:focus,
 textarea:focus {
   border-color: rgba(82, 168, 236, 0.8);
-  -webkit-box-shadow: inset 0 0.0725em 0.0725em rgba(0, 0, 0, 0.075), 0 0 0.5em rgba(82, 168, 236, 0.6);
   box-shadow: inset 0 0.0725em 0.0725em rgba(0, 0, 0, 0.075), 0 0 0.5em rgba(82, 168, 236, 0.6);
   outline: 0;
   outline: thin dotted \9;
 }
 
+/* line 65, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_forms.scss */
 input[type="file"]:focus,
 input[type="checkbox"]:focus,
 select:focus {
@@ -795,6 +881,7 @@ select:focus {
 /**
  * Inline inputs
  */
+/* line 77, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_forms.scss */
 .input-inline, #submit {
   display: inline-block;
   width: auto;
@@ -804,11 +891,13 @@ select:focus {
 /**
  * Condensed inputs
  */
+/* line 87, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_forms.scss */
 .input-condensed {
   padding: 0.0725em 0.3125em;
   font-size: 0.9375em;
 }
 
+/* line 6, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_wordpress-forms.scss */
 .field-checkbox {
   margin-bottom: 1.5625em;
 }
@@ -822,6 +911,7 @@ select:focus {
 /**
  * Hide icons by default to prevent blank spaces in unsupported browsers
  */
+/* line 11, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_svgs.scss */
 .icon {
   height: 0;
   width: 0;
@@ -831,6 +921,7 @@ select:focus {
  * Display icons when browser supports SVG.
  * Inherit height, width, and color.
  */
+/* line 20, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_svgs.scss */
 .svg .icon {
   display: inline-block;
   width: 1em;
@@ -842,6 +933,7 @@ select:focus {
  * Hide fallback text if browser supports SVG
  */
 @media (max-width: 60em) {
+  /* line 35, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_svgs.scss */
   .svg .icon-supporting-text {
     border: 0;
     clip: rect(0 0 0 0);
@@ -853,6 +945,7 @@ select:focus {
     width: 1px;
   }
 }
+
 /**
  * @section WordPress Image Classes
  * Styling for the classes WordPress automatically applies to images.
@@ -861,11 +954,12 @@ select:focus {
  * Comment Avatar Styling
  * Class automatically applied to comment avatars.
  */
+/* line 10, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_wordpress-images.scss */
 .avatar {
   float: left;
   margin-right: 0.5em;
   /*  Set $size to 2x desired size in comments.php
-   *  for crisp images on retina screens. */
+	 *  for crisp images on retina screens. */
   height: 3.75em;
   width: 3.75em;
 }
@@ -874,6 +968,7 @@ select:focus {
  * Display all images as centered block elements.
  * Mobile-first default styling.
  */
+/* line 23, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_wordpress-images.scss */
 .alignleft,
 .alignright,
 .aligncenter,
@@ -887,6 +982,7 @@ select:focus {
 /**
  * Image Caption Styling
  */
+/* line 36, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_wordpress-images.scss */
 .wp-caption-text {
   font-size: 0.9375em;
   font-style: italic;
@@ -897,38 +993,42 @@ select:focus {
 
 @media (min-width: 30em) {
   /**
-   * On bigger screens, float .alignleft images to the left with a slight margin-right.
-   */
+	 * On bigger screens, float .alignleft images to the left with a slight margin-right.
+	 */
+  /* line 49, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_wordpress-images.scss */
   .alignleft {
     float: left;
     margin-right: 0.5em;
   }
-
   /**
-   * On bigger screens, float .alignright images to the right with a slight margin-left.
-   */
+	 * On bigger screens, float .alignright images to the right with a slight margin-left.
+	 */
+  /* line 57, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_wordpress-images.scss */
   .alignright {
     float: right;
     margin-left: 0.5em;
   }
-
   /**
-   * On bigger screens, remove left and right margins from .alignnone
-   */
+	 * On bigger screens, remove left and right margins from .alignnone
+	 */
+  /* line 65, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_wordpress-images.scss */
   .alignnone {
     margin-left: 0;
     margin-right: 0;
   }
 }
+
 /* For text-based logo, override default link styling.
  * If .logo and .nav don't align properly,
  * adjust the .logo line-height. */
+/* line 5, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_astro-navbar.scss */
 .nav-wrap-navbar {
   background-color: #42a4d4;
   padding-top: 0.25em;
   padding-bottom: 0.25em;
 }
 
+/* line 11, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_astro-navbar.scss */
 a.logo-navbar {
   display: inline-block;
   float: left;
@@ -938,12 +1038,14 @@ a.logo-navbar {
 }
 
 /* For text-based logo, override default link hover styling */
+/* line 25, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_astro-navbar.scss */
 .logo-navbar:hover {
   color: #e5e5e5;
   text-decoration: none;
 }
 
 /* Remove default list styling for navigation list */
+/* line 32, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_astro-navbar.scss */
 .nav-navbar {
   list-style: none;
   text-align: right;
@@ -953,6 +1055,7 @@ a.logo-navbar {
 
 /* Display navigation items as inline-block elements.
  * Add slight margin between each navigation item. */
+/* line 41, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_astro-navbar.scss */
 .nav-navbar > li {
   display: inline-block;
   float: none;
@@ -961,10 +1064,12 @@ a.logo-navbar {
 }
 
 /* Link styling */
+/* line 59, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_astro-navbar.scss */
 .nav-navbar > li > a {
   color: #ffffff;
 }
 
+/* line 64, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_astro-navbar.scss */
 .nav-navbar > li > a:hover {
   color: #e5e5e5;
   border-bottom: 0.1875em solid #257aa4;
@@ -972,24 +1077,28 @@ a.logo-navbar {
 }
 
 /* Active link styling */
+/* line 72, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_astro-navbar.scss */
 .nav-navbar > li.active > a {
   border-bottom: 0.1875em solid #257aa4;
 }
 
 /* Hide the navigation toggle menu button by default.
  * Only needed for expand-and-collapse option. */
+/* line 78, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_astro-navbar.scss */
 .nav-toggle-navbar {
   display: none;
   visibility: hidden;
 }
 
 /* Clearfix */
+/* line 85, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_astro-navbar.scss */
 .nav-wrap-navbar:before,
 .nav-wrap-navbar:after {
   display: table;
   content: "";
 }
 
+/* line 91, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_astro-navbar.scss */
 .nav-wrap-navbar:after {
   clear: both;
 }
@@ -997,6 +1106,7 @@ a.logo-navbar {
 /**
  * Secondary navigation
  */
+/* line 98, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_astro-navbar.scss */
 .nav-secondary {
   background-color: #e5e5e5;
   padding-top: 0.25em;
@@ -1004,33 +1114,36 @@ a.logo-navbar {
 }
 
 @media (max-width: 60em) {
+  /* line 116, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_astro-navbar.scss */
   .svg .nav-wrap-navbar {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
   }
-
+  /* line 121, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_astro-navbar.scss */
   .svg .nav-wrap-navbar .icon {
     height: 1.5em;
     width: 1.5em;
   }
-
+  /* line 126, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_astro-navbar.scss */
   .svg .nav-navbar {
     margin-left: -1em;
     margin-right: -1em;
   }
-
+  /* line 131, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_astro-navbar.scss */
   .svg .nav-navbar > li {
     margin-left: 1em;
     margin-right: 1em;
   }
-
+  /* line 136, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_astro-navbar.scss */
   .nav-secondary {
     background-color: #e5e5e5;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
   }
 }
+
 /*  Adds a border */
+/* line 2, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_snapshot.scss */
 .img-border, .img-photo,
 a:hover .img-border,
 a:hover .img-photo {
@@ -1038,43 +1151,48 @@ a:hover .img-photo {
 }
 
 /*  Adds padding and a white border */
+/* line 8, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_snapshot.scss */
 .img-photo {
   padding: 0.25em;
   background-color: #ffffff;
-  -webkit-box-shadow: 0 0.0725em 0.0725em rgba(0, 0, 0, 0.1);
   box-shadow: 0 0.0725em 0.0725em rgba(0, 0, 0, 0.1);
 }
 
 /* Adds a 50% border radius,
  * turning square images into a circle. */
+/* line 1, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_alerts.scss */
 .alert {
   color: #257aa4;
-  background-color: #d9ecf6;
-  border: 0.0725em solid #bcdfef;
+  background-color: #d9edf6;
+  border: 0.0725em solid #bddff0;
   margin-bottom: 1.5625em;
   padding: 0.25em 0.5em;
   border-radius: 0.0725em;
 }
 
+/* line 10, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_alerts.scss */
 .alert-success {
   color: #007104;
-  background-color: #ccf1cd;
-  border-color: #a5e7a7;
+  background-color: #ccf2cd;
+  border-color: #a6e8a8;
 }
 
+/* line 16, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_alerts.scss */
 .alert-danger {
   color: #43070a;
-  background-color: #e7ced0;
-  border-color: #d5aaac;
+  background-color: #e7cfd0;
+  border-color: #d5abad;
 }
 
+/* line 22, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_alerts.scss */
 .alert-warning {
   color: #614a04;
-  background-color: #f7edcd;
-  border-color: #f2e0a8;
+  background-color: #f8eece;
+  border-color: #f2e1a9;
 }
 
 /*	Hide show/hide labels by default */
+/* line 2, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_x-ray.scss */
 .x-ray,
 .x-ray-show,
 .x-ray-hide {
@@ -1084,6 +1202,7 @@ a:hover .img-photo {
 
 /*	Display show/hide toggle when modern JS API's supported.
  *	Display show/hide labels when active. */
+/* line 11, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_x-ray.scss */
 .js-x-ray .x-ray,
 .x-ray-show.active,
 .x-ray-hide.active {
@@ -1098,32 +1217,39 @@ a:hover .img-photo {
 /**
  * Text sizes
  */
+/* line 10, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .text-small {
   font-size: 0.9375em;
 }
 
+/* line 14, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .text-large {
   font-size: 1.1875em;
   line-height: 1.4;
 }
 
 @media (min-width: 40em) {
+  /* line 20, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
   .text-large {
     font-size: 1.3125em;
   }
 }
+
 /**
  * Text colors
  */
+/* line 30, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .text-muted {
   color: #808080;
 }
 
+/* line 34, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .text-white,
 .text-white a {
   color: #ffffff;
 }
 
+/* line 39, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .text-white a:hover {
   color: #e5e5e5;
 }
@@ -1131,14 +1257,17 @@ a:hover .img-photo {
 /**
  * Text alignment
  */
+/* line 47, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .text-center {
   text-align: center;
 }
 
+/* line 51, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .text-right {
   text-align: right;
 }
 
+/* line 55, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .text-left {
   text-align: left;
 }
@@ -1146,6 +1275,7 @@ a:hover .img-photo {
 /**
  * Background Colors
  */
+/* line 64, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .bg-primary {
   background-color: #42a4d4;
 }
@@ -1153,6 +1283,7 @@ a:hover .img-photo {
 /**
  * Display Types
  */
+/* line 73, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .display-block {
   display: block;
   width: 100%;
@@ -1161,16 +1292,19 @@ a:hover .img-photo {
 /**
  * Floats
  */
+/* line 83, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .float-left {
   float: left;
 }
 
+/* line 87, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .float-center {
   float: none;
   margin-left: auto;
   margin-right: auto;
 }
 
+/* line 93, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .float-right {
   float: right;
 }
@@ -1178,30 +1312,37 @@ a:hover .img-photo {
 /**
  * Margins
  */
+/* line 102, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .no-margin {
   margin: 0;
 }
 
+/* line 106, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .no-margin-top {
   margin-top: 0;
 }
 
+/* line 110, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .no-margin-bottom {
   margin-bottom: 0;
 }
 
+/* line 114, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .margin-top {
   margin-top: 1.5625em;
 }
 
+/* line 118, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .margin-bottom {
   margin-bottom: 1.5625em;
 }
 
+/* line 122, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .margin-bottom-small {
   margin-bottom: 0.5em;
 }
 
+/* line 126, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .margin-bottom-large {
   margin-bottom: 2em;
 }
@@ -1209,38 +1350,47 @@ a:hover .img-photo {
 /**
  * Padding
  */
+/* line 135, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .no-padding {
   padding: 0;
 }
 
+/* line 139, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .no-padding-top {
   padding-top: 0;
 }
 
+/* line 143, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .no-padding-bottom {
   padding-bottom: 0;
 }
 
+/* line 147, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .padding-top {
   padding-top: 1.5625em;
 }
 
+/* line 151, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .padding-top-small {
   padding-top: 0.5em;
 }
 
+/* line 155, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .padding-top-large {
   padding-top: 2em;
 }
 
+/* line 159, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .padding-bottom {
   padding-bottom: 1.5625em;
 }
 
+/* line 163, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .padding-bottom-small {
   padding-bottom: 0.5em;
 }
 
+/* line 167, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .padding-bottom-large {
   padding-bottom: 2em;
 }
@@ -1253,6 +1403,7 @@ a:hover .img-photo {
  * @link https://github.com/h5bp/html5-boilerplate/blob/master/dist/css/main.css
  * @link http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
  */
+/* line 181, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .screen-reader, .svg .icon-fallback-text {
   border: 0;
   clip: rect(0 0 0 0);
@@ -1269,6 +1420,7 @@ a:hover .img-photo {
  * @link https://github.com/h5bp/html5-boilerplate/blob/master/dist/css/main.css
  * @link https://www.drupal.org/node/897638
  */
+/* line 197, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .screen-reader-focusable:active,
 .screen-reader-focusable:focus {
   clip: auto;
@@ -1280,6 +1432,7 @@ a:hover .img-photo {
 }
 
 @media (max-width: 40em) {
+  /* line 208, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
   .supporting-text {
     border: 0;
     clip: rect(0 0 0 0);
@@ -1291,11 +1444,13 @@ a:hover .img-photo {
     width: 1px;
   }
 }
+
 /**
  * @workaround
  * @affected IE 8/9/10
  * @link http://juicystudio.com/article/screen-readers-display-none.php
  */
+/* line 225, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 [hidden] {
   display: none;
   visibility: hidden;
@@ -1306,6 +1461,7 @@ a:hover .img-photo {
  * The space content is one way to avoid an Opera bug when the `contenteditable` attribute is included anywhere else in the document.
  * @link https://github.com/h5bp/html5-boilerplate/blob/master/dist/css/main.css
  */
+/* line 237, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .clearfix:before, .container:before,
 .row:before,
 .clearfix:after,
@@ -1315,6 +1471,7 @@ a:hover .img-photo {
   content: " ";
 }
 
+/* line 243, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .clearfix:after, .container:after,
 .row:after {
   clear: both;
@@ -1327,81 +1484,81 @@ a:hover .img-photo {
  */
 @media print {
   /**
-   * Universal selector.
-   * Reset all content to transparent background, black color, and remove box and text shadows.
-   */
+	 * Universal selector.
+	 * Reset all content to transparent background, black color, and remove box and text shadows.
+	 */
+  /* line 13, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_print.scss */
   * {
     background: transparent !important;
     color: #000 !important;
-    -webkit-box-shadow: none !important;
     box-shadow: none !important;
     text-shadow: none !important;
   }
-
   /**
-   * Specifies page margin
-   */
+	 * Specifies page margin
+	 */
   @page {
     margin: 0.5cm;
   }
   /**
-   * Underline all links
-   */
+	 * Underline all links
+	 */
+  /* line 30, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_print.scss */
   a,
   a:visited {
     text-decoration: underline;
   }
-
   /**
-   * Show URL after links
-   */
+	 * Show URL after links
+	 */
+  /* line 38, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_print.scss */
   a[href]:after {
     content: " (" attr(href) ")";
   }
-
   /**
-   * Don't show URL for internal links
-   */
+	 * Don't show URL for internal links
+	 */
+  /* line 45, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_print.scss */
   a[href^="#"]:after {
     content: "";
   }
-
   /**
-   * Specifies the minimum number of lines to print at the top and bottom of a page.
-   */
+	 * Specifies the minimum number of lines to print at the top and bottom of a page.
+	 */
+  /* line 52, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_print.scss */
   p,
   h1, h2, h3 {
     orphans: 3;
     widows: 3;
   }
-
   /**
-   * Avoid inserting a page break after headers
-   */
+	 * Avoid inserting a page break after headers
+	 */
+  /* line 61, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_print.scss */
   h1, h2, h3 {
     page-break-after: avoid;
   }
-
   /**
-   * Change border color on blockquotes and preformatted text.
-   * Avoid page breaks inside the content
-   */
+	 * Change border color on blockquotes and preformatted text.
+	 * Avoid page breaks inside the content
+	 */
+  /* line 69, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_print.scss */
   pre,
   blockquote {
     border-color: #999;
     page-break-inside: avoid;
   }
-
   /**
-   * Displayed as a table header row group
-   */
+	 * Displayed as a table header row group
+	 */
+  /* line 78, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_print.scss */
   thead {
     display: table-header-group;
   }
-
   /**
-   * Avoid inserting a page break inside table rows and images
-   */
+	 * Avoid inserting a page break inside table rows and images
+	 */
+  /* line 85, /Users/cferdinandi/Sites/photoboard/wordpress/wp-content/themes/photoboard/src/sass/components/_print.scss */
   tr,
   img {
     page-break-inside: avoid;

@@ -8,6 +8,8 @@ Theme for the Photoboard app.
 
 Keel uses [semantic versioning](http://semver.org/).
 
+* v1.4.0 - November 16, 2014
+	* Changed commenter display.
 * v1.3.2 - November 16, 2014
 	* Removed unused .hero styles.
 * v1.3.1 - November 15, 2014

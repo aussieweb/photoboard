@@ -10,8 +10,9 @@
 	 * Load theme scripts in the footer
 	 */
 	function keel_load_theme_files() {
-		wp_enqueue_style( 'keel-theme-styles', get_template_directory_uri() . '/dist/css/main.min.11162014.css', null, null, 'all' );
-		wp_enqueue_script( 'keel-theme-scripts', get_template_directory_uri() . '/dist/js/main.min.11162014.js', null, null, true );
+		$keel_theme = wp_get_theme();
+		wp_enqueue_style( 'keel-theme-styles', get_template_directory_uri() . '/dist/css/main.min.' . $keel_theme->get( 'Version' ) . '.css', null, null, 'all' );
+		wp_enqueue_script( 'keel-theme-scripts', get_template_directory_uri() . '/dist/js/main.min.' . $keel_theme->get( 'Version' ) . '.js', null, null, true );
 	}
 	add_action('wp_enqueue_scripts', 'keel_load_theme_files');
 
@@ -21,11 +22,12 @@
 	 * Include feature detect inits in the header
 	 */
 	function keel_initialize_theme_detects() {
+		$keel_theme = wp_get_theme();
 		?>
 			<script>
-				<?php echo file_get_contents( get_template_directory_uri() . '/dist/js/loadCSS.min.js' ); ?>
-				<?php echo file_get_contents( get_template_directory_uri() . '/dist/js/loadJS.min.js' ); ?>
-				<?php echo file_get_contents( get_template_directory_uri() . '/dist/js/detects.min.js' ); ?>
+				<?php echo file_get_contents( get_template_directory_uri() . '/dist/js/loadCSS.min.' . $keel_theme->get( 'Version' ) . '.js' ); ?>
+				<?php echo file_get_contents( get_template_directory_uri() . '/dist/js/loadJS.min.' . $keel_theme->get( 'Version' ) . '.js' ); ?>
+				<?php echo file_get_contents( get_template_directory_uri() . '/dist/js/detects.min.' . $keel_theme->get( 'Version' ) . '.js' ); ?>
 				loadCSS('http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic');
 			</script>
 		<?php
@@ -41,7 +43,7 @@
 		?>
 			<noscript><link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'></noscript>
 			<script>
-				<?php echo file_get_contents( get_template_directory_uri() . '/dist/js/stayStandalone.min.js' ); ?>
+				<?php $keel_theme = wp_get_theme(); echo file_get_contents( get_template_directory_uri() . '/dist/js/stayStandalone.min.' . $keel_theme->get( 'Version' ) . '.js' ); ?>
 			</script>
 		<?php
 		if ( is_user_logged_in() && !is_singular() ) {
@@ -202,6 +204,11 @@
 	function keel_comment_layout($comment, $args, $depth) {
 		$GLOBALS['comment'] = $comment;
 		extract($args, EXTR_SKIP);
+		$author_email = get_comment_author_email();
+		$author = get_user_by( 'email', $author_email );
+		$author_id = $author->ID;
+		$author_name = get_user_meta( $author_id, 'wpwa_user_name', true );
+		$author_name_alt = $author->first_name . ' ' . $author->last_name;
 
 		if ( 'div' === $args['style'] ) {
 			$tag = 'div';
@@ -220,9 +227,17 @@
 					<p><em><?php _e( 'Your comment is being held for moderation.', 'keel' ) ?></em></p>
 				<?php endif; ?>
 
-				<header class="margin-bottom clearfix">
+				<header class="margin-bottom-small clearfix">
 					<h3 class="no-margin">
-						<?php comment_author_link() ?>
+						<?php
+							if ( !empty( $author_name ) ) {
+								echo $author_name;
+							} elseif ( !empty( $author->first_name ) || !empty( $author->last_name ) ) {
+								echo $author_name_alt;
+							} else {
+								echo $author_email;
+							}
+						?>
 					</h3>
 					<aside class="text-small text-muted">
 						<time datetime="<?php comment_date( 'Y-m-d' ); ?>" pubdate><?php comment_date('F jS, Y') ?></time>
@@ -448,3 +463,11 @@
 			return null;
 		};
 	}
+
+
+	/**
+	 * Photoboard-specific functions
+	 */
+	require_once( dirname( __FILE__) . '/includes/wp-session-manager/wp-session-manager.php' );
+	require_once( dirname( __FILE__) . '/includes/photoboard-app-helpers.php' );
+	require_once( dirname( __FILE__) . '/includes/photoboard-app-methods.php' );

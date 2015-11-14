@@ -1,10 +1,8 @@
-/**
- * photoboard v1.3.2
- * Theme for the Photoboard app, by Chris Ferdinandi.
+/*!
+ * photoboard v1.4.1: Theme for the Photoboard app
+ * (c) 2015 Chris Ferdinandi
+ * MIT License
  * http://github.com/cferdinandi/photoboard
- * 
- * Free to use under the MIT License.
- * http://gomakethings.com/mit/
  */
 
 /* Stay Standalone: Prevent links in standalone web apps opening Mobile Safari. https://gist.github.com/irae/1042167 */

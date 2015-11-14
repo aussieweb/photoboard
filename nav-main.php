@@ -46,12 +46,12 @@
 							<span class="icon-supporting-text"><?php _e( 'Notifications', 'keel' ); ?></span>
 						</a>
 					</li>
-					<li <?php if (  is_page( 'change-password' ) || is_page( 'change-email' ) ) { echo 'class="active"'; }?>>
-						<a href="<?php echo site_url(); ?>/change-password">
+					<li <?php if (  is_page( 'change-password' ) || is_page( 'change-email' ) || is_page( 'change-name' ) ) { echo 'class="active"'; }?>>
+						<a href="<?php echo site_url(); ?>/change-name">
 							<svg class="icon">
 								<use xlink:href="#icon-gear"></use>
 							</svg>
-							<span class="icon-supporting-text"><?php $current_user = wp_get_current_user(); echo $current_user->user_login; ?></span>
+							<span class="icon-supporting-text"><?php $current_user = wp_get_current_user(); echo $current_user->user_email; ?></span>
 						</a>
 					</li>
 					<!-- <li <?php if (is_page('profile')) { echo 'class="active"'; }?>>

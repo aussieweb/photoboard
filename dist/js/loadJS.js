@@ -1,10 +1,8 @@
-/**
- * photoboard v1.3.2
- * Theme for the Photoboard app, by Chris Ferdinandi.
+/*!
+ * photoboard v1.4.1: Theme for the Photoboard app
+ * (c) 2015 Chris Ferdinandi
+ * MIT License
  * http://github.com/cferdinandi/photoboard
- * 
- * Free to use under the MIT License.
- * http://gomakethings.com/mit/
  */
 
 /*! loadJS: load a JS file asynchronously. [c]2014 @scottjehl, Filament Group, Inc. (Based on http://goo.gl/REQGQ by Paul Irish). Licensed MIT */

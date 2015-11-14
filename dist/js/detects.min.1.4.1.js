@@ -1,0 +1,2 @@
+/*! photoboard v1.4.1 | (c) 2015 Chris Ferdinandi | MIT License | http://github.com/cferdinandi/photoboard */
+!function(e,t,c){"use strict";var n=!!t.createElementNS&&!!t.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect;n&&(t.documentElement.className+=(t.documentElement.className?" ":"")+"svg")}(window,document);

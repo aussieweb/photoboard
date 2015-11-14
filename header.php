@@ -36,7 +36,7 @@
 
 	<body>
 
-		<div hidden><?php include_once('dist/svg/icons.svg'); ?></div>
+		<div hidden><?php include_once( 'dist/svg/icons.svg' ); ?></div>
 
 		<!-- Old Browser Warning -->
 		<!--[if lt IE 9]>
