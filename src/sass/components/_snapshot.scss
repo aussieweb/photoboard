@@ -1,6 +1,5 @@
 /*  Adds a border */
-.img-border,
-a:hover .img-border {
+.img-border {
 	border: calc-em(1px) solid darken( $color-gray-light, 10% );
 }
 
@@ -12,8 +11,8 @@ a:hover .img-border {
 	box-shadow: 0 calc-em(1px) calc-em(1px) rgba(0, 0, 0, 0.1);
 }
 
-/* Adds a 50% border radius,
- * turning square images into a circle. */
-// .img-circle {
-// 	border-radius: 50%;
-// }
+/*  Adds a 50% border radius,
+ *  turning square images into a circle. */
+.img-circle {
+	border-radius: 50%;
+}

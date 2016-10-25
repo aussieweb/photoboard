@@ -1,16 +1,33 @@
-/*	Hide show/hide labels by default */
+/**
+ * @section X-Ray
+ * Styling for password show/hide checkbox
+ */
+
+/**
+ * Hide checkbox by default
+ */
 .x-ray,
 .x-ray-show,
 .x-ray-hide {
+	@extend .margin-bottom;
 	display: none;
+	font-weight: normal;
 	visibility: hidden;
 }
 
-/*	Display show/hide toggle when modern JS API's supported.
- *	Display show/hide labels when active. */
+
+/**
+ * Display checkbox when JS is supported
+ */
 .js-x-ray .x-ray,
 .x-ray-show.active,
 .x-ray-hide.active {
 	display: block;
 	visibility: visible;
 }
+
+
+// Reduce spacing of checkboxes above it
+ .js-x-ray .wpwebapp-form-label-checkbox {
+ 	@extend .margin-bottom-small;
+ }

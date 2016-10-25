@@ -1,0 +1,11 @@
+/**
+ * @section Photoswipe
+ * Overrides for Photoswipe
+ */
+
+.pswp__share--facebook,
+.pswp__share--twitter,
+.pswp__share--pinterest {
+	display: none !important; // =(
+	visibility: hidden !important; // =(
+}

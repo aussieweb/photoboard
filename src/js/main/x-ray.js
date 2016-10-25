@@ -1,12 +1,12 @@
 (function (root, factory) {
 	if ( typeof define === 'function' && define.amd ) {
-		define('xray', factory(root));
+		define([], factory(root));
 	} else if ( typeof exports === 'object' ) {
 		module.exports = factory(root);
 	} else {
 		root.xray = factory(root);
 	}
-})(window || this, function (root) {
+})(typeof global !== 'undefined' ? global : this.window || this.global, function (root) {
 
 	'use strict';
 
@@ -15,15 +15,17 @@
 	//
 
 	var xray = {}; // Object for public APIs
-	var supports = !!document.querySelector && !!root.addEventListener; // Feature test
+	var supports = 'querySelector' in document && 'addEventListener' in root && 'classList' in document.createElement('_'); // Feature test
 	var settings, toggles;
 
 	// Default settings
 	var defaults = {
+		selector: '[data-x-ray]',
+		selectorShow: '[data-x-ray-show]',
+		selectorHide: '[data-x-ray-hide]',
 		toggleActiveClass: 'active',
 		initClass: 'js-x-ray',
-		callbackBefore: function () {},
-		callbackAfter: function () {}
+		callback: function () {}
 	};
 
 
@@ -32,68 +34,136 @@
 	//
 
 	/**
-	 * A simple forEach() implementation for Arrays, Objects and NodeLists
+	 * A simple forEach() implementation for Arrays, Objects and NodeLists.
 	 * @private
+	 * @author Todd Motto
+	 * @link   https://github.com/toddmotto/foreach
 	 * @param {Array|Object|NodeList} collection Collection of items to iterate
-	 * @param {Function} callback Callback function for each iteration
-	 * @param {Array|Object|NodeList} scope Object/NodeList/Array that forEach is iterating over (aka `this`)
+	 * @param {Function}              callback   Callback function for each iteration
+	 * @param {Array|Object|NodeList} scope      Object/NodeList/Array that forEach is iterating over (aka `this`)
 	 */
-	var forEach = function (collection, callback, scope) {
-		if (Object.prototype.toString.call(collection) === '[object Object]') {
-			for (var prop in collection) {
-				if (Object.prototype.hasOwnProperty.call(collection, prop)) {
-					callback.call(scope, collection[prop], prop, collection);
+	var forEach = function ( collection, callback, scope ) {
+		if ( Object.prototype.toString.call( collection ) === '[object Object]' ) {
+			for ( var prop in collection ) {
+				if ( Object.prototype.hasOwnProperty.call( collection, prop ) ) {
+					callback.call( scope, collection[prop], prop, collection );
 				}
 			}
 		} else {
-			for (var i = 0, len = collection.length; i < len; i++) {
-				callback.call(scope, collection[i], i, collection);
+			for ( var i = 0, len = collection.length; i < len; i++ ) {
+				callback.call( scope, collection[i], i, collection );
 			}
 		}
 	};
 
 	/**
-	 * Merge defaults with user options
+	 * Merge two or more objects. Returns a new object.
 	 * @private
-	 * @param {Object} defaults Default settings
-	 * @param {Object} options User options
-	 * @returns {Object} Merged values of defaults and options
+	 * @param {Boolean}  deep     If true, do a deep (or recursive) merge [optional]
+	 * @param {Object}   objects  The objects to merge together
+	 * @returns {Object}          Merged values of defaults and options
 	 */
-	var extend = function ( defaults, options ) {
+	var extend = function () {
+
+		// Variables
 		var extended = {};
-		forEach(defaults, function (value, prop) {
-			extended[prop] = defaults[prop];
-		});
-		forEach(options, function (value, prop) {
-			extended[prop] = options[prop];
-		});
+		var deep = false;
+		var i = 0;
+		var length = arguments.length;
+
+		// Check if a deep merge
+		if ( Object.prototype.toString.call( arguments[0] ) === '[object Boolean]' ) {
+			deep = arguments[0];
+			i++;
+		}
+
+		// Merge the object into the extended object
+		var merge = function (obj) {
+			for ( var prop in obj ) {
+				if ( Object.prototype.hasOwnProperty.call( obj, prop ) ) {
+					// If deep merge and property is an object, merge properties
+					if ( deep && Object.prototype.toString.call(obj[prop]) === '[object Object]' ) {
+						extended[prop] = extend( true, extended[prop], obj[prop] );
+					} else {
+						extended[prop] = obj[prop];
+					}
+				}
+			}
+		};
+
+		// Loop through each object and conduct a merge
+		for ( ; i < length; i++ ) {
+			var obj = arguments[i];
+			merge(obj);
+		}
+
 		return extended;
+
 	};
 
 	/**
-	 * Get the closest matching element up the DOM tree
-	 * @param {Element} elem Starting element
-	 * @param {String} selector Selector to match against (class, ID, or data attribute)
-	 * @return {Boolean|Element} Returns false if not match found
+	 * Get the closest matching element up the DOM tree.
+	 * @private
+	 * @param  {Element} elem     Starting element
+	 * @param  {String}  selector Selector to match against (class, ID, data attribute, or tag)
+	 * @return {Boolean|Element}  Returns null if not match found
 	 */
-	var getClosest = function (elem, selector) {
+	var getClosest = function ( elem, selector ) {
+
+		// Variables
 		var firstChar = selector.charAt(0);
+		var attribute, value;
+
+		// If selector is a data attribute, split attribute from value
+		if ( firstChar === '[' ) {
+			selector = selector.substr(1, selector.length - 2);
+			attribute = selector.split( '=' );
+
+			if ( attribute.length > 1 ) {
+				value = true;
+				attribute[1] = attribute[1].replace( /"/g, '' ).replace( /'/g, '' );
+			}
+		}
+
+		// Get closest match
 		for ( ; elem && elem !== document; elem = elem.parentNode ) {
+
+			// If selector is a class
 			if ( firstChar === '.' ) {
 				if ( elem.classList.contains( selector.substr(1) ) ) {
 					return elem;
 				}
-			} else if ( firstChar === '#' ) {
+			}
+
+			// If selector is an ID
+			if ( firstChar === '#' ) {
 				if ( elem.id === selector.substr(1) ) {
 					return elem;
 				}
-			} else if ( firstChar === '[' ) {
-				if ( elem.hasAttribute( selector.substr(1, selector.length - 2) ) ) {
-					return elem;
+			}
+
+			// If selector is a data attribute
+			if ( firstChar === '[' ) {
+				if ( elem.hasAttribute( attribute[0] ) ) {
+					if ( value ) {
+						if ( elem.getAttribute( attribute[0] ) === attribute[1] ) {
+							return elem;
+						}
+					} else {
+						return elem;
+					}
 				}
 			}
+
+			// If selector is a tag
+			if ( elem.tagName.toLowerCase() === selector ) {
+				return elem;
+			}
+
 		}
-		return false;
+
+		return null;
+
 	};
 
 	/**
@@ -121,8 +191,8 @@
 	 * @param  {Object} settings
 	 */
 	var loadDefaultVisibility = function ( toggle, visibility, pwSelector, settings ) {
-		var showText = toggle.querySelector('[data-x-ray-show]');
-		var hideText = toggle.querySelector('[data-x-ray-hide]');
+		var showText = toggle.querySelector( settings.selectorShow );
+		var hideText = toggle.querySelector( settings.selectorHide );
 		var pws = document.querySelectorAll(pwSelector);
 		if ( visibility === 'show' ) {
 			togglePW(pws);
@@ -167,12 +237,10 @@
 		var settings = extend( settings || defaults, options || {} );  // Merge user options with defaults
 		var pws = document.querySelectorAll( pwSelector );
 
-		settings.callbackBefore( toggle, pwSelector ); // Run callbacks before password visibility toggle
-
 		togglePW( pws ); // Show/Hide password
 		updateToggleText( toggle, settings ); // Change the toggle text
 
-		settings.callbackAfter( toggle, pwSelector ); // Run callbacks after password visibility toggle
+		settings.callback( toggle, pwSelector ); // Run callbacks after password visibility toggle
 
 	};
 
@@ -181,7 +249,7 @@
 	 * @private
 	 */
 	var eventHandler = function (event) {
-		var toggle = getClosest(event.target, '[data-x-ray]');
+		var toggle = getClosest( event.target, settings.selector );
 		if ( toggle ) {
 			if ( toggle.tagName.toLowerCase() === 'a' || toggle.tagName.toLowerCase() === 'button' ) {
 				event.preventDefault();
@@ -203,8 +271,8 @@
 
 				// Get elements
 				var pws = document.querySelectorAll( toggle.getAttribute('data-x-ray') );
-				var showText = toggle.querySelector('[data-x-ray-show]');
-				var hideText = toggle.querySelector('[data-x-ray-hide]');
+				var showText = toggle.querySelector( settings.selectorShow );
+				var hideText = toggle.querySelector( settings.selectorHide );
 
 				// Reset to default password state
 				forEach( pws, function ( pw ) {
@@ -234,7 +302,7 @@
 
 		// Selectors and variables
 		settings = extend( defaults, options || {} ); // Merge user options with defaults
-		toggles = document.querySelectorAll('[data-x-ray]'); // Get show/hide password toggles
+		toggles = document.querySelectorAll( settings.selector ); // Get show/hide password toggles
 
 		document.documentElement.classList.add( settings.initClass ); // Add class to HTML element to activate conditional CSS
 

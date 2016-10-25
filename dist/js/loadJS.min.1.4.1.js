@@ -1,2 +1,0 @@
-/*! photoboard v1.4.1 | (c) 2015 Chris Ferdinandi | MIT License | http://github.com/cferdinandi/photoboard */
-function loadJS(e,t){"use strict";var n=window.document.getElementsByTagName("script")[0],o=window.document.createElement("script");return o.src=e,o.async=!0,n.parentNode.insertBefore(o,n),t&&"function"==typeof t&&(o.onload=t),o}

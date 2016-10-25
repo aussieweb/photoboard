@@ -1,8 +1,9 @@
 /*!
- * photoboard v1.4.1: Theme for the Photoboard app
- * (c) 2015 Chris Ferdinandi
+ * photoboard v2.0.0: The WordPress theme for Photoboard
+ * (c) 2016 Chris Ferdinandi
  * MIT License
- * http://github.com/cferdinandi/photoboard
+ * https://github.com/cferdinandi/photoboard
+ * Open Source Credits: https://github.com/ftlabs/fastclick, https://github.com/toddmotto/fluidvids, http://prismjs.com
  */
 
 /*! loadJS: load a JS file asynchronously. [c]2014 @scottjehl, Filament Group, Inc. (Based on http://goo.gl/REQGQ by Paul Irish). Licensed MIT */

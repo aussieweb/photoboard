@@ -1,0 +1,11 @@
+/**
+ * @section WordPress For Web Apps
+ * WordPress for Web Apps overrides
+ */
+
+
+// Add more space after checkbox labels
+.wpwebapp-form-label-checkbox {
+	@extend .margin-bottom;
+	@extend .label-checklist;
+}

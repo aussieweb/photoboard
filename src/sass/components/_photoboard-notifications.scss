@@ -1,0 +1,11 @@
+/**
+ * @section Photoboard Notifications
+ * Photoboard Notifications overrides
+ */
+
+
+// Add more space after checkbox labels
+.photoboard-notifications-checkbox {
+	@extend .margin-bottom;
+	@extend .label-checklist;
+}

@@ -1,26 +1,19 @@
-# Photoboard [![Build Status](https://travis-ci.org/cferdinandi/photoboard.svg)](https://travis-ci.org/cferdinandi/photoboard)
-
-Theme for the Photoboard app.
-
+# Go Make Things [![Build Status](https://travis-ci.org/cferdinandi/gomakethings.svg)](https://travis-ci.org/cferdinandi/gomakethings)
+The personal website of Chris Ferdinandi. [http://gomakethings.com](http://gomakethings.com)
 
 
-## Changelog
+## Dependencies
+Make sure these are installed first.
 
-Keel uses [semantic versioning](http://semver.org/).
+* [Node.js](http://nodejs.org)
+* [Ruby Sass](http://sass-lang.com/install)
+* [Gulp](http://gulpjs.com) `sudo npm install -g gulp`
 
-* v1.4.0 - November 16, 2014
-	* Changed commenter display.
-* v1.3.2 - November 16, 2014
-	* Removed unused .hero styles.
-* v1.3.1 - November 15, 2014
-	* Fixed playback issue on iOS.
-* v1.3.0 - November 11, 2014
-	* Better wrapping around individual photos and videos.
-* v1.2.0 - November 11, 2014
-	* Minor updates to how all albums are displayed.
-	* Fix navigation display on small screens.
-	* Updated profile styling.
-* v1.1.0 - November 10, 2014
-	* Added mobile web app supporting meta data.
-* v1.0.0 - November 9, 2014
-	* Initial Commit
+
+## Quick Start
+
+1. In bash/terminal/command line, `cd` into your project directory.
+2. Run `npm install` to install required files.
+3. When it's done installing, run one of the task runners to get going:
+	* `gulp` manually compiles files and runs unit tests.
+	* `gulp watch` automatically compiles files, runs unit tests, and applies changes using [LiveReload](http://livereload.com/).
