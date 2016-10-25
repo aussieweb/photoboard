@@ -9,62 +9,89 @@ body {
 	line-height: 1.5;
 	color: $color-black;
 	background: $color-white;
+	// border-top: calc-em(8px) solid $color-gray-light;
+
+	.fonts-loaded & {
+		font-family: $font-enhanced;
+	}
 
 	@media (min-width: $bp-medium) {
 		line-height: 1.5625;
 	}
-
-	@if $font-size-base != $font-size-xlarge-screens {
-		@media (min-width: $bp-xlarge) {
-			font-size: $font-size-xlarge-screens;
-		}
-	}
 }
 
 p {
-	margin-bottom: $spacing;
+	margin: 0 0 $spacing;
 }
 
 
 /**
  * Hyperlink styling
+ * 1. Remove the gray background on active links in IE 10.
+ * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
  */
-
-a,
-a:visited {
+a {
+	background-color: transparent; /* 1 */
 	color: $color-primary;
 	text-decoration: none;
 	word-wrap: break-word;
+	-webkit-text-decoration-skip: objects; /* 2 */
+
+	/**
+	 * Improve readability when focused and also mouse hovered in all browsers.
+	 */
+	&:active,
+	&:hover {
+		outline: 0;
+
+		img {
+			opacity: 0.7;
+		}
+	}
+
+	&:active,
+	&:focus,
+	&:hover {
+		color: darken( $color-primary, 15% );
+		text-decoration: underline;
+	}
 }
 
-a:hover,
-a:focus,
-a:active {
-	color: darken( $color-primary, 15% );
-	text-decoration: underline;
-}
-
-a img {
-	border: none;
-	background: none;
-}
 
 /**
- * Prevents border/background on linked image hover.
- * Adds slight opacity.
+ * Remove default link styling
  */
-a:hover img {
-	border: none;
-	background: none;
-	opacity: 0.8;
-	filter: alpha(opacity=80);
+.link-plain {
+	&,
+	&:visited {
+		color: $color-black;
+	}
+
+	&:active,
+	&:focus,
+	&:hover {
+		color: $color-primary;
+		text-decoration: none;
+	}
 }
 
-.link-disabled,
-.link-disabled:visited {
-	color: $color-gray-dark;
-	cursor: not-allowed;
-	pointer-events: none;
+
+/**
+ * Creates block-level links
+ */
+
+a.link-block {
+	color: $color-black;
+	display: block;
+	text-decoration: none;
+}
+
+.link-block-styled {
+	@extend a;
+
+	.link-block:hover & {
+		@extend a:hover;
+	}
 }
 
 
@@ -73,10 +100,9 @@ a:hover img {
  */
 
 ul,
-ol,
-dl {
-	margin-bottom: $spacing;
-	margin-left: calc-em(32px);
+ol {
+	margin: 0 0 $spacing calc-em(32px);
+	padding: 0;
 }
 
 ul ul,
@@ -86,13 +112,28 @@ ol ul {
 	margin-bottom: 0;
 }
 
-dl {
-	margin-left: 0;
+li {
+	margin-bottom: calc-em(8px);
+
+	@media (min-width: $bp-medium) {
+		margin-bottom: calc-em(4px);
+	}
+}
+
+dl,
+dd {
+	margin: 0;
+	padding: 0;
+}
+
+dd {
+	margin: 0 0 $spacing;
 }
 
 dt {
 	font-weight: bold;
 }
+
 
 /**
  * Removes list styling.
@@ -104,20 +145,25 @@ dt {
 }
 
 /**
- * Display lists on a single line.
+ * Display lists inline
  */
-
 .list-inline {
-  list-style: none;
-  margin-left: calc-em(-8px);
-  margin-right: calc-em(-8px);
-  padding: 0;
-}
+	list-style: none;
+	margin-left: calc-em(-8px);
+	margin-right: calc-em(-8px);
+	padding: 0;
 
-.list-inline > li {
-  display: inline-block;
-  margin-left: calc-em(8px);
-  margin-right: calc-em(8px);
+	li {
+		display: inline-block;
+		margin-left: calc-em(8px);
+		margin-right: calc-em(8px);
+	}
+
+	@media (max-width: $bp-medium) {
+		&.list-inline-responsive li {
+			display: block;
+		}
+	}
 }
 
 
@@ -127,12 +173,23 @@ dt {
  */
 
 h1, h2, h3, h4, h5, h6 {
-	line-height: 1.2;
+	line-height: 1.4;
+	// font-weight: bold;
 	font-weight: normal;
-	margin-bottom: 1em;
-	padding-top: 1em;
+	margin: 0 0 1em;
+	padding: 1em 0 0;
 	word-wrap: break-word;
 }
+
+// h1,
+// .h1 {
+// 	font-size: calc-em(24px);
+// 	padding-top: .5em;
+
+// 	// @media (min-width: $bp-medium) {
+// 	// 	font-size: calc-em(28px);
+// 	// }
+// }
 
 h1,
 .h1 {
@@ -156,7 +213,8 @@ h3,
 
 h4, h5, h6,
 .h4, .h5, .h6 {
-	font-size: calc-em(15px);
+	font-size: calc-em(16px);
+	// font-weight: bold;
 }
 
 h4,
@@ -164,64 +222,137 @@ h4,
 	text-transform: uppercase;
 }
 
+// /**
+//  * Heading link styling
+//  */
+
+// h1 a,
+// h1 a:visited,
+// .h1 a,
+// .h1 a:visited {
+// 	color: $color-black;
+// }
+
+// h1 a:hover,
+// .h1 a:hover {
+// 	color: $color-primary;
+// 	text-decoration: none;
+// }
+
 
 /**
- * Lines, Quotes and Emphasis
+ * Lines
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
  */
 
 hr {
-	margin: calc-em(32px) auto;
 	border: 0;
 	border-top: calc-em(1px) solid $color-gray-light;
-	border-bottom: 0 solid $color-white;
+	border-bottom: 0 solid transparent;
+	box-sizing: content-box; /* 1 */
+	height: 0; /* 1 */
+	margin: calc-em(32px) auto;
+	overflow: visible; /* 2 */
 }
 
+.line-secondary {
+	width: 50%;
+}
+
+.line-clear {
+	border-top-color: transparent;
+}
+
+
+/**
+ * Prevent the duplicate application of `bolder` by the next rule in Safari 6.
+ */
+b,
 strong {
-	font-weight: bold;
-}
-
-em {
-	font-style: italic;
-}
-
-sub,
-sup {
-	position: relative;
-	font-size: 85%;
-	font-weight: bold;
-	line-height: 0;
-	vertical-align: baseline;
-	margin-left: calc-em(4px);
-}
-
-sup {
-	top: calc-em(-8px);
-}
-
-sub {
-	bottom: calc-em(-4px);
+	font-weight: inherit;
 }
 
 /**
- * Highlighting colors
+ * Add the correct font weight in Chrome, Edge, and Safari.
  */
-::selection {
-	color: $color-white;
-	background: $color-primary;
+b,
+strong {
+	font-weight: bolder;
 }
+
+/**
+ * 1. Remove the bottom border in Firefox 39-.
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+abbr[title] {
+	border-bottom: none; /* 1 */
+	text-decoration: underline; /* 2 */
+	text-decoration: underline dotted; /* 2 */
+}
+
+/**
+ * Address styling not present in Safari and Chrome.
+ */
+dfn {
+	font-style: italic;
+}
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+mark {
+	background-color: #ff0;
+	color: #000;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+small {
+	font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+sub,
+sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sup {
+	top: -0.5em;
+}
+
+sub {
+	bottom: -0.25em;
+}
+
 
 /**
  * Blockquotes
  */
 
 blockquote {
-	border-left: calc-em(4px) solid $color-gray-light;
-	margin-bottom: $spacing;
-	padding-left: $spacing;
-	padding-right: $spacing;
+	font-size: calc-em(19px);
+	font-style: italic;
+	margin: 0 0 $spacing;
+	padding-left: calc-em(16px, 19px);
+	padding-right: calc-em(16px, 19px);
+
+	cite {
+		color: $color-gray-dark;
+		font-size: calc-em(16px, 19px);
+		padding-top: calc-em(16px);
+	}
 }
 
-blockquote, q {
+blockquote,
+q {
 	quotes: none;
 }
 

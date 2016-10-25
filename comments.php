@@ -14,21 +14,30 @@
 	}
 ?>
 
-<?php if ( have_comments() ) : // If there are comments ?>
+<?php // if ( have_comments() ) : // If there are comments ?>
+<?php if ( comments_open() ) : // If comments are allowed ?>
 
-	<h2 id="comments"><?php comments_number( __( 'Comment', 'keel' ), __( '1 Comment', 'keel' ), __( '% Comments', 'keel' ) ); ?></h2>
+	<h2 id="comments">
+		<?php
+			$comment_count = keel_just_comments_count();
+			if ( $comment_count === 0 ) {
+				_e( 'Comment', 'keel' );
+			} else if ( $comment_count === 1 ) {
+				_e( '1 Comment', 'keel' );
+			} else {
+				echo $comment_count . ' ' . __( 'Comments', 'keel' );
+			}
+		?>
+	</h2>
 
 	<?php
 		wp_list_comments( array(
 			'style' => 'div',
 			'avatar_size' => 120,
+			'type' => 'comment',
 			'callback' => 'keel_comment_layout' // Custom comment structure (in `functions.php`)
 		) );
 	?>
-
-	<?php if ( !comments_open() ) : // if there are no comments ?>
-		<p><?php _e( 'Comments are closed.', 'keel' ) ?></p>
-	<?php endif; ?>
 
 	<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // if paginated comments ?>
 		<nav>
@@ -40,9 +49,13 @@
 		</nav>
 	<?php endif; ?>
 
-<?php endif; ?>
+<?php //endif; ?>
 
 
-<?php if ( comments_open() ) : // If comments are allowed ?>
+<?php //if ( comments_open() ) : // If comments are allowed ?>
 	<?php keel_comment_form(); // Custom comment form (in `functions.php`) ?>
 <?php endif; // end if comments are open ?>
+
+<?php if ( !comments_open() ) : // if comments aren't allowed ?>
+	<p><em><?php _e( 'Comments are closed.', 'keel' ) ?></em></p>
+<?php endif; ?>

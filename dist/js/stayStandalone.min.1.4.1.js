@@ -1,2 +1,0 @@
-/*! photoboard v1.4.1 | (c) 2015 Chris Ferdinandi | MIT License | http://github.com/cferdinandi/photoboard */
-!function(e,t,n){if(n in t&&t[n]){var r,f=e.location,o=/^(a|html)$/i;e.addEventListener("click",function(e){for(r=e.target;!o.test(r.nodeName);)r=r.parentNode;"href"in r&&(chref=r.href).replace(f.href,"").indexOf("#")&&(!/^[a-z\+\.\-]+:/i.test(chref)||0===chref.indexOf(f.protocol+"//"+f.host))&&(e.preventDefault(),f.href=r.href)},!1)}}(document,window.navigator,"standalone");

@@ -9,95 +9,35 @@
 
 ?>
 
-<section class="nav-wrap-navbar">
-	<nav class="container">
-		<a class="logo-navbar" href="<?php echo site_url(); ?>">
-			<svg class="icon">
-				<use xlink:href="#icon-logo"></use>
-			</svg>
-			<span class="icon-supporting-text"><?php _e( 'Photoboard', 'keel' ); ?></span>
+
+<header class="nav-wrap margin-bottom">
+	<nav class="container container-large">
+		<a class="logo" href="<?php echo site_url(); ?>/">
+			<svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 17 17"><path d="M9.031 0L7.437 1.594l1.594 1.594-3.719 4.25H1.593l2.922 2.922-4.516 5.987v.654h.654l5.987-4.516 2.922 2.922v-3.719l4.25-3.719 1.594 1.594L17 7.969 9.031 0zM7.438 9.031L6.375 7.968l3.719-3.719 1.063 1.063-3.719 3.719z"/></svg>
+			<span class="icon-description"><?php echo get_bloginfo( 'name' ); ?></span>
 		</a>
-		<div class="nav-menu-navbar" id="nav-menu">
-			<?php if ( is_user_logged_in() ) : ?>
-				<ul class="nav-navbar">
-					<?php if ( current_user_can( 'publish_posts' ) ) : ?>
-						<li>
-							<a href="<?php echo admin_url( 'post-new.php' ); ?>">
-								<svg class="icon">
-									<use xlink:href="#icon-upload"></use>
-								</svg>
-								<span class="icon-supporting-text"><?php _e( 'Upload', 'keel' ); ?></span>
-							</a>
-						</li>
-					<?php endif; ?>
-					<li <?php if (is_front_page() || is_single()) { echo 'class="active"'; }?>>
-						<a href="<?php echo site_url(); ?>/">
-							<svg class="icon">
-								<use xlink:href="#icon-photos"></use>
-							</svg>
-							<span class="icon-supporting-text"><?php _e( 'Albums', 'keel' ); ?></span>
-						</a>
-					</li>
-					<li <?php if (is_page('notifications')) { echo 'class="active"'; }?>>
-						<a href="<?php echo site_url(); ?>/notifications">
-							<svg class="icon">
-								<use xlink:href="#icon-bell"></use>
-							</svg>
-							<span class="icon-supporting-text"><?php _e( 'Notifications', 'keel' ); ?></span>
-						</a>
-					</li>
-					<li <?php if (  is_page( 'change-password' ) || is_page( 'change-email' ) || is_page( 'change-name' ) ) { echo 'class="active"'; }?>>
-						<a href="<?php echo site_url(); ?>/change-name">
-							<svg class="icon">
-								<use xlink:href="#icon-gear"></use>
-							</svg>
-							<span class="icon-supporting-text"><?php $current_user = wp_get_current_user(); echo $current_user->user_email; ?></span>
-						</a>
-					</li>
-					<!-- <li <?php if (is_page('profile')) { echo 'class="active"'; }?>>
-						<a href="<?php echo site_url(); ?>/profile">
-							<svg class="icon">
-								<use xlink:href="#icon-gear"></use>
-							</svg>
-							<span class="icon-supporting-text"><?php $current_user = wp_get_current_user(); echo $current_user->user_login; ?></span>
-						</a>
-					</li> -->
-					<!-- <li>
-						<a href="<?php echo wp_logout_url(); ?>">
-							<svg class="icon">
-								<use xlink:href="#icon-logout"></use>
-							</svg>
-							<span class="icon-supporting-text"><?php _e( 'Logout', 'keel' ); ?></span>
-						</a>
-					</li> -->
-				</ul>
-			<?php else : ?>
-				<ul class="nav-navbar">
-					<li <?php if (is_page('signup')) { echo 'class="active"'; }?>>
-						<a href="<?php echo site_url(); ?>/signup">
-							<svg class="icon">
-								<use xlink:href="#icon-plus"></use>
-							</svg>
-							<span class="icon-supporting-text"><?php _e( 'Sign Up', 'keel' ); ?></span>
-						</a>
-					</li>
-					<li <?php if (!is_page('signup') && !is_page('reset-password')) { echo 'class="active"'; }?>>
-						<a href="<?php echo site_url(); ?>/">
-							<svg class="icon">
-								<use xlink:href="#icon-login"></use>
-							</svg>
-							<span class="icon-supporting-text"><?php _e( 'Login', 'keel' ); ?></span>
-						</a>
-					</li>
-				</ul>
-			<?php endif; ?>
-		</div>
+		<?php if ( is_user_logged_in() && has_nav_menu( 'primary' ) ) : ?>
+			<div class="nav-menu" id="nav-menu">
+				<?php wp_nav_menu(
+					array(
+						'theme_location' => 'primary',
+						'container'      => false,
+						'menu_class'     => 'nav',
+						'depth'          => 2,
+					)
+				); ?>
+			</div>
+		<?php elseif ( !is_user_logged_in() && has_nav_menu( 'primary_logged_out' ) ) : ?>
+			<div class="nav-menu" id="nav-menu">
+				<?php wp_nav_menu(
+					array(
+						'theme_location' => 'primary_logged_out',
+						'container'      => false,
+						'menu_class'     => 'nav',
+						'depth'          => 2,
+					)
+				); ?>
+			</div>
+		<?php endif; ?>
 	</nav>
-</section>
-<?php if ( is_user_logged_in() && !is_front_page() ) : ?>
-	<section class="nav-secondary">
-		<nav class="container">
-			<strong><a href="<?php echo site_url(); ?>">&larr; Back</a></strong>
-		</nav>
-	</section>
-<?php endif; ?>
+</header>

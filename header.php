@@ -6,7 +6,7 @@
  */
 
 ?><!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?> class="<?php if ( isset($_COOKIE['fontsLoaded']) && $_COOKIE['fontsLoaded'] === 'true' ) { echo 'fonts-loaded'; } ?> <?php if ( current_user_can( 'edit_themes' ) ) { echo 'user-is-admin'; } ?>">
 
 	<head>
 		<meta charset="<?php bloginfo('charset'); ?>">
@@ -16,41 +16,56 @@
 
 		<!-- Mobile Screen Resizing -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="mobile-web-app-capable" content="yes">
 
 		<!-- Icons: place in the root directory -->
 		<!-- https://github.com/audreyr/favicon-cheat-sheet -->
-		<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/dist/img/favicon.ico" />
 		<link rel="apple-touch-icon" href="<?php echo get_stylesheet_directory_uri(); ?>/dist/img/favicon-144.png">
-		<meta name="msapplication-TileColor" content="#97c331">
+		<meta name="msapplication-TileColor" content="#93b84c">
 		<meta name="msapplication-TileImage" content="<?php echo get_stylesheet_directory_uri(); ?>/dist/img/favicon-ms.png">
+		<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/dist/img/favicon.ico">
+		<link rel="icon" sizes="16x16 32x32" href="<?php echo get_stylesheet_directory_uri(); ?>/dist/img/favicon.ico">
 
-		<!-- Feeds & Pings -->
-		<link rel="alternate" type="application/rss+xml" title="<?php printf( __( '%s RSS Feed', 'keel' ), get_bloginfo( 'name' ) ); ?>" href="<?php bloginfo( 'rss2_url' ); ?>">
-		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
+		<!-- Theme info -->
+		<meta name="photoboard-version" content="<?php $keel_theme = wp_get_theme(); echo $keel_theme->get( 'Version' ); ?>">
+		<meta name="photoboard-video-js-directory" content="<?php echo get_template_directory_uri() . '/dist/'; ?>">
 
 		<?php wp_head(); ?>
 
 	</head>
 
-	<body>
+	<?php
+		// Get page layout options
+		global $post;
+		$page_navs = get_post_meta( $post->ID, 'keel_page_navs', true );
+	?>
 
-		<div hidden><?php include_once( 'dist/svg/icons.svg' ); ?></div>
+	<body <?php body_class(); ?>>
 
 		<!-- Old Browser Warning -->
 		<!--[if lt IE 9]>
-			<section>
+			<aside class="container">
 				<p>Did you know that your web browser is a bit old? Some of the content on this site might not work right as a result. <a href="http://whatbrowser.org">Upgrade your browser</a> for a faster, safer, and better web experience.</p>
-			</section>
+			</aside>
 		<![endif]-->
 
-		<!-- Skip link for better accessibility -->
-		<a class="screen-reader screen-reader-focusable" href="#main">Skip to main content</a>
+		<?php
+			// a11y enhancements
+			if ( empty( $page_navs ) || $page_navs === 'off' ) {
+				get_template_part( 'nav', 'accessibility' );
+			}
+		?>
 
 		<?php
 			// Get site navigation
-			get_template_part( 'nav-main', 'Site Navigation' );
+			if ( empty( $page_navs ) || $page_navs === 'off' ) {
+				get_template_part( 'nav', 'main' );
+			}
 		?>
 
-		<section id="main" class="container">
+		<main class="tabindex" id="main" tabindex="-1">
+
+			<div class="container <?php if ( keel_is_albums() || is_search() ) { echo 'container-large'; } ?>">
+
+				<?php if ( keel_is_albums() || is_search() ) : ?>
+					<div class="row" data-right-height>
+				<?php endif; ?>

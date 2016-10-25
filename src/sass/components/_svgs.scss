@@ -9,6 +9,8 @@
  * Hide icons by default to prevent blank spaces in unsupported browsers
  */
 .icon {
+	display: inline-block;
+	fill: currentColor;
 	height: 0;
 	width: 0;
 }
@@ -18,28 +20,41 @@
  * Inherit height, width, and color.
  */
 .svg .icon {
-	display: inline-block;
-	width: 1em;
 	height: 1em;
-	fill: currentColor;
+	width: auto;
 }
+
+
+/**
+ * Icon sizes
+ */
+
+.svg .icon-large {
+	height: 2em;
+}
+
+.svg .icon-xlarge {
+	height: 3em;
+}
+
+
+/**
+ * Icon colors
+ */
+
+.icon-black { fill: $color-black; }
+.icon-gray { fill: $color-gray-dark; }
+.icon-primary { fill: $color-primary; }
+.icon-secondary { fill: darken( $color-secondary, 7% ); }
+
+a:hover .icon-link {
+	fill: darken( $color-primary, 15% );
+}
+
 
 /**
  * Hide fallback text if browser supports SVG
  */
 .svg .icon-fallback-text {
 	@extend .screen-reader;
-}
-
-@media (max-width: $bp-large) {
-	.svg .icon-supporting-text {
-		border: 0;
-		clip: rect(0 0 0 0);
-		height: 1px;
-		margin: -1px;
-		overflow: hidden;
-		padding: 0;
-		position: absolute;
-		width: 1px;
-	}
 }

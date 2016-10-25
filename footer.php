@@ -7,25 +7,42 @@
 
 ?>
 
-		</section><!-- /#main -->
+				<?php if ( keel_is_albums() || is_search() ) : ?>
+					</div>
+				<?php endif; ?>
 
-		<footer class="container">
+			</div><!-- /.container -->
+		</main><!-- /#main -->
 
-			<hr>
+		<?php
+			// Get page layout options
+			global $post;
+			$page_navs = get_post_meta( $post->ID, 'keel_page_navs', true );
+		?>
 
-			<p class="text-muted">
-				<?php
-					// Insert copyright info
-					printf( __( 'Made with <3 by Chris and Michelle. Need tech support? %sEmail Chris.%s', 'keel' ), '<a href="mailto:h&#101;l&#108;o&#64;&#103;&#111;&#109;&#97;&#107;ethi&#110;g&#115;&#46;co&#109;">', '</a>' );
-				?>
-			</p>
+		<?php if ( empty( $page_navs ) || $page_navs === 'off' ) : ?>
+			<footer class="container container-large">
 
-			<?php if ( current_user_can( 'edit_themes' ) ) : ?>
-				<p><a href="<?php echo admin_url(); ?>">WP Admin</a></p>
-			<?php endif; ?>
+				<hr class="margin-bottom">
 
-		</footer>
+				<div class="text-small text-muted">
 
+					<?php get_template_part( 'nav', 'secondary' ); ?>
+
+					<p>
+						<?php
+							printf( __( 'Made with <3 by Chris and Michelle. Need tech support? %sEmail Chris.%s', 'keel' ), '<a href="mailto:' . antispambot( 'chris@gomakethings.com' ) . '">', '</a>' );
+						?>
+					</p>
+
+					<?php if ( current_user_can( 'edit_themes' ) ) : ?>
+						<p><a href="<?php echo admin_url(); ?>">WP Admin</a></p>
+					<?php endif; ?>
+
+				</div>
+
+			</footer>
+		<?php endif; ?>
 
 		<?php wp_footer(); ?>
 

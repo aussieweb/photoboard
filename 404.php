@@ -7,22 +7,23 @@
 
 get_header(); ?>
 
+<?php
+	// Get the theme options
+	$options = keel_get_theme_options();
+?>
 
 <article>
 	<header>
-		<h1><?php _e( 'Page Not Found', 'keel' ) ?></h1>
+		<h1><?php echo esc_html( $options['404_heading'] ); ?></h1>
 	</header>
 
-	<p><?php _e( 'Sorry, but the page you were looking for doesn\'t exist. It looks like this was the result of either:', 'keel' ) ?></p>
-
-	<ol>
-		<li><?php _e( 'A mistyped address.', 'keel' ) ?></li>
-		<li><?php _e( 'An out-of-date link.', 'keel' ) ?></li>
-	</ol>
+	<?php echo do_shortcode( stripslashes( wpautop( $options['404_content'], false ) ) ); ?>
 
 	<?php
 		// Insert the search form
-		get_search_form();
+		if ( $options['404_show_search'] === 'on' ) {
+			get_search_form();
+		}
 	?>
 
 </article>

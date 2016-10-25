@@ -3,6 +3,35 @@
  * Nudge and tweak alignment, spacing, and visibility.
  */
 
+
+// /**
+//  * Backgrounds
+//  */
+
+// .bg-muted {
+// 	background-color: lighten( $color-gray-light, 7% );
+// }
+
+
+// /**
+//  * Font weights
+//  */
+
+// .normal {
+// 	font-weight: normal;
+// 	line-height: 1.4;
+// }
+
+
+// /**
+//  * Text transforms
+//  */
+
+// .text-uppercase {
+// 	text-transform: uppercase;
+// }
+
+
 /**
  * Text sizes
  */
@@ -14,11 +43,18 @@
 .text-large {
 	font-size: calc-em(19px);
 	line-height: 1.4;
+
+	@media (min-width: $bp-medium) {
+		font-size: calc-em(21px);
+	}
 }
 
-@media (min-width: $bp-medium) {
-	.text-large {
-		font-size: calc-em(21px);
+.text-xlarge {
+	font-size: 1.7em;
+	line-height: 1.4;
+
+	@media (min-width: $bp-medium) {
+		font-size: 2em;
 	}
 }
 
@@ -31,14 +67,10 @@
 	color: $color-gray-dark;
 }
 
-.text-white,
-.text-white a {
-	color: $color-white;
-}
+// .text-secondary {
+// 	color: $color-secondary;
+// }
 
-.text-white a:hover {
-	color: $color-gray-light;
-}
 
 /**
  * Text alignment
@@ -48,41 +80,28 @@
 	text-align: center;
 }
 
+@media (min-width: $bp-medium) {
+	.text-right-large {
+		text-align: right;
+	}
+}
+
 .text-right {
 	text-align: right;
 }
 
-.text-left {
-	text-align: left;
-}
+// .text-left {
+// 	text-align: left;
+// }
 
 
-/**
- * Background Colors
- */
-//
-.bg-primary {
-	background-color: $color-primary;
-}
+// /**
+//  * Floats
+//  */
 
-
-/**
- * Display Types
- */
-
-.display-block {
-	display: block;
-	width: 100%;
-}
-
-
-/**
- * Floats
- */
-
-.float-left {
-	float: left;
-}
+// .float-left {
+// 	float: left;
+// }
 
 .float-center {
 	float: none;
@@ -127,6 +146,10 @@
 	margin-bottom: calc-em(32px);
 }
 
+.margin-right {
+	margin-right: calc-em(4px);
+}
+
 
 /**
  * Padding
@@ -156,6 +179,10 @@
 	padding-top: calc-em(32px);
 }
 
+.padding-top-xlarge {
+	padding-top: calc-em(48px);
+}
+
 .padding-bottom {
 	padding-bottom: $spacing;
 }
@@ -166,6 +193,10 @@
 
 .padding-bottom-large {
 	padding-bottom: calc-em(32px);
+}
+
+.padding-bottom-xlarge {
+	padding-bottom: calc-em(48px);
 }
 
 
@@ -202,19 +233,6 @@
 	overflow: visible;
 	position: static;
 	width: auto;
-}
-
-@media (max-width: $bp-medium) {
-	.supporting-text {
-		border: 0;
-		clip: rect(0 0 0 0);
-		height: 1px;
-		margin: -1px;
-		overflow: hidden;
-		padding: 0;
-		position: absolute;
-		width: 1px;
-	}
 }
 
 /**

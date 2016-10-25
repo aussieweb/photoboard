@@ -13,6 +13,10 @@
 	margin-right: auto;
 }
 
+.container-large {
+	max-width: $container-large-max-width;
+}
+
 .row {
 	margin-left: $grid-margins * -1;
 	margin-right: $grid-margins * -1;
@@ -33,8 +37,8 @@
 
 
 /**
- * Reverses order of grid for content choreography
- */
+* Reverses order of grid for content choreography
+*/
 .grid-flip {
 	float: right;
 }

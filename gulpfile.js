@@ -22,16 +22,15 @@ var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-var karma = require('gulp-karma');
+var optimizejs = require('gulp-optimize-js');
 
 // Styles
 var sass = require('gulp-sass');
 var prefix = require('gulp-autoprefixer');
-var minify = require('gulp-minify-css');
+var minify = require('gulp-cssnano');
 
 // SVGs
 var svgmin = require('gulp-svgmin');
-var svgstore = require('gulp-svgstore');
 
 // Docs
 var markdown = require('gulp-markdown');
@@ -61,16 +60,13 @@ var paths = {
 		input: 'src/img/*',
 		output: 'dist/img/'
 	},
+	static: {
+		input: 'src/static/**',
+		output: 'dist/'
+	},
 	theme : {
 		input: 'src/style.css',
 		output: ''
-	},
-	test: {
-		input: 'src/js/**/*.js',
-		karma: 'test/karma.conf.js',
-		spec: 'test/spec/**/*.js',
-		coverage: 'test/coverage/',
-		results: 'test/results/'
 	},
 	docs: {
 		input: 'src/docs/*.{html,md,markdown}',
@@ -92,6 +88,7 @@ var banner = {
 		' * (c) ' + new Date().getFullYear() + ' <%= package.author.name %>\n' +
 		' * MIT License\n' +
 		' * <%= package.repository.url %>\n' +
+		' * Open Source Credits: <%= package.openSource.credits %>\n' +
 		' */\n\n',
 	min :
 		'/*!' +
@@ -99,17 +96,19 @@ var banner = {
 		' | (c) ' + new Date().getFullYear() + ' <%= package.author.name %>' +
 		' | MIT License' +
 		' | <%= package.repository.url %>' +
+		' | Open Source Credits: <%= package.openSource.credits %>' +
 		' */\n',
 	theme :
 		'/**\n' +
-		' * Theme Name: <%= package.name %> v<%= package.version %>\n' +
+		' * Theme Name: <%= package.name %>\n' +
 		' * Theme URI: <%= package.repository.url %>\n' +
+		' * GitHub Theme URI: <%= package.repository.url %>\n' +
 		' * Description: <%= package.description %>\n' +
 		' * Version: <%= package.version %>\n' +
 		' * Author: <%= package.author.name %>\n' +
 		' * Author URI: <%= package.author.url %>\n' +
 		' * License: <%= package.license %>\n' +
-		' * License URI: <%= package.author.url %>/mit/\n' +
+		' * Open Source Credits: <%= package.openSource.credits %>\n' +
 		' */'
 };
 
@@ -122,9 +121,11 @@ var banner = {
 gulp.task('build:scripts', ['clean:dist'], function() {
 	var jsTasks = lazypipe()
 		.pipe(header, banner.full, { package : package })
+		.pipe(optimizejs)
 		.pipe(gulp.dest, paths.scripts.output)
 		.pipe(rename, { suffix: '.min.' + package.version })
 		.pipe(uglify)
+		.pipe(optimizejs)
 		.pipe(header, banner.min, { package : package })
 		.pipe(gulp.dest, paths.scripts.output);
 
@@ -158,7 +159,11 @@ gulp.task('build:styles', ['clean:dist'], function() {
 		.pipe(header(banner.full, { package : package }))
 		.pipe(gulp.dest(paths.styles.output))
 		.pipe(rename({ suffix: '.min.' + package.version }))
-		.pipe(minify())
+		.pipe(minify({
+			discardComments: {
+				removeAll: true
+			}
+		}))
 		.pipe(header(banner.min, { package : package }))
 		.pipe(gulp.dest(paths.styles.output));
 });
@@ -167,19 +172,6 @@ gulp.task('build:styles', ['clean:dist'], function() {
 gulp.task('build:svgs', ['clean:dist'], function () {
 	return gulp.src(paths.svgs.input)
 		.pipe(plumber())
-		.pipe(tap(function (file, t) {
-			if ( file.isDirectory() ) {
-				var name = file.relative + '.svg';
-				return gulp.src(file.path + '/*.svg')
-					.pipe(svgmin())
-					.pipe(svgstore({
-						fileName: name,
-						// prefix: 'icon-',
-						inlineSvg: true
-					}))
-					.pipe(gulp.dest(paths.svgs.output));
-			}
-		}))
 		.pipe(svgmin())
 		.pipe(gulp.dest(paths.svgs.output));
 });
@@ -189,6 +181,13 @@ gulp.task('build:images', ['clean:dist'], function() {
 	return gulp.src(paths.images.input)
 		.pipe(plumber())
 		.pipe(gulp.dest(paths.images.output));
+});
+
+// Copy static files into output folder
+gulp.task('build:static', ['clean:dist'], function() {
+	return gulp.src(paths.static.input)
+		.pipe(plumber())
+		.pipe(gulp.dest(paths.static.output));
 });
 
 // Create style.css with theme header
@@ -212,22 +211,6 @@ gulp.task('clean:dist', function () {
 	del.sync([
 		paths.output
 	]);
-});
-
-// Remove pre-existing content from text folders
-gulp.task('clean:test', function () {
-	del.sync([
-		paths.test.coverage,
-		paths.test.results
-	]);
-});
-
-// Run unit tests
-gulp.task('test:scripts', function() {
-	return gulp.src([paths.test.input].concat([paths.test.spec]))
-		.pipe(plumber())
-		.pipe(karma({ configFile: paths.test.karma }))
-		.on('error', function(err) { throw err; });
 });
 
 // Generate documentation
@@ -292,8 +275,9 @@ gulp.task('compile', [
 	'clean:dist',
 	'build:scripts',
 	'build:styles',
-	'build:images',
 	'build:svgs',
+	'build:images',
+	'build:static',
 	'build:theme'
 ]);
 
@@ -315,10 +299,4 @@ gulp.task('default', [
 gulp.task('watch', [
 	'listen',
 	'default'
-]);
-
-// Run unit tests
-gulp.task('test', [
-	'default',
-	'test:scripts'
 ]);

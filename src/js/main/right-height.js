@@ -1,21 +1,12 @@
-/**
- * Right-Height v2.6.4
- * Dynamically set content areas of different lengths to the same height, by Chris Ferdinandi.
- * http://github.com/cferdinandi/right-height
- * 
- * Free to use under the MIT License.
- * http://gomakethings.com/mit/
- */
-
 (function (root, factory) {
 	if ( typeof define === 'function' && define.amd ) {
-		define('rightHeight', factory(root));
+		define([], factory(root));
 	} else if ( typeof exports === 'object' ) {
 		module.exports = factory(root);
 	} else {
 		root.rightHeight = factory(root);
 	}
-})(window || this, function (root) {
+})(typeof global !== "undefined" ? global : this.window || this.global, function (root) {
 
 	'use strict';
 
@@ -24,13 +15,14 @@
 	//
 
 	var rightHeight = {}; // Object for public APIs
-	var supports = !!document.querySelector && !!root.addEventListener; // Feature test
+	var supports = 'querySelector' in document && 'addEventListener' in root; // Feature test
 	var settings, containers, eventTimeout;
 
 	// Default settings
 	var defaults = {
-		callbackBefore: function () {},
-		callbackAfter: function () {}
+		selector: '[data-right-height]',
+		selectorContent: '[data-right-height-content]',
+		callback: function () {}
 	};
 
 
@@ -39,59 +31,110 @@
 	//
 
 	/**
-	 * A simple forEach() implementation for Arrays, Objects and NodeLists
+	 * A simple forEach() implementation for Arrays, Objects and NodeLists.
 	 * @private
+	 * @author Todd Motto
+	 * @link   https://github.com/toddmotto/foreach
 	 * @param {Array|Object|NodeList} collection Collection of items to iterate
-	 * @param {Function} callback Callback function for each iteration
-	 * @param {Array|Object|NodeList} scope Object/NodeList/Array that forEach is iterating over (aka `this`)
+	 * @param {Function}              callback   Callback function for each iteration
+	 * @param {Array|Object|NodeList} scope      Object/NodeList/Array that forEach is iterating over (aka `this`)
 	 */
-	var forEach = function (collection, callback, scope) {
-		if (Object.prototype.toString.call(collection) === '[object Object]') {
-			for (var prop in collection) {
-				if (Object.prototype.hasOwnProperty.call(collection, prop)) {
-					callback.call(scope, collection[prop], prop, collection);
+	var forEach = function ( collection, callback, scope ) {
+		if ( Object.prototype.toString.call( collection ) === '[object Object]' ) {
+			for ( var prop in collection ) {
+				if ( Object.prototype.hasOwnProperty.call( collection, prop ) ) {
+					callback.call( scope, collection[prop], prop, collection );
 				}
 			}
 		} else {
-			for (var i = 0, len = collection.length; i < len; i++) {
-				callback.call(scope, collection[i], i, collection);
+			for ( var i = 0, len = collection.length; i < len; i++ ) {
+				callback.call( scope, collection[i], i, collection );
 			}
 		}
 	};
 
 	/**
-	 * Merge defaults with user options
+	 * Merge two or more objects. Returns a new object.
 	 * @private
-	 * @param {Object} defaults Default settings
-	 * @param {Object} options User options
-	 * @returns {Object} Merged values of defaults and options
+	 * @param {Boolean}  deep     If true, do a deep (or recursive) merge [optional]
+	 * @param {Object}   objects  The objects to merge together
+	 * @returns {Object}          Merged values of defaults and options
 	 */
-	var extend = function ( defaults, options ) {
+	var extend = function () {
+
+		// Variables
 		var extended = {};
-		forEach(defaults, function (value, prop) {
-			extended[prop] = defaults[prop];
-		});
-		forEach(options, function (value, prop) {
-			extended[prop] = options[prop];
-		});
+		var deep = false;
+		var i = 0;
+		var length = arguments.length;
+
+		// Check if a deep merge
+		if ( Object.prototype.toString.call( arguments[0] ) === '[object Boolean]' ) {
+			deep = arguments[0];
+			i++;
+		}
+
+		// Merge the object into the extended object
+		var merge = function (obj) {
+			for ( var prop in obj ) {
+				if ( Object.prototype.hasOwnProperty.call( obj, prop ) ) {
+					// If deep merge and property is an object, merge properties
+					if ( deep && Object.prototype.toString.call(obj[prop]) === '[object Object]' ) {
+						extended[prop] = extend( true, extended[prop], obj[prop] );
+					} else {
+						extended[prop] = obj[prop];
+					}
+				}
+			}
+		};
+
+		// Loop through each object and conduct a merge
+		for ( ; i < length; i++ ) {
+			var obj = arguments[i];
+			merge(obj);
+		}
+
 		return extended;
+
 	};
 
+
 	/**
-	 * Calculate distance to top of page
+	 * Wait until document is ready to run method
 	 * @private
-	 * @param  {Element} content The content area to get the distance for
-	 * @return {Number} Distance to the top of the document
+	 * @param  {Function} fn Method to run
 	 */
-	var getDistanceToTop = function ( content ) {
-		var distance = 0;
-		if (content.offsetParent) {
-			do {
-				distance += content.offsetTop;
-				content = content.offsetParent;
-			} while (content);
+	var ready = function ( fn ) {
+
+		// Sanity check
+		if ( typeof fn !== 'function' ) return;
+
+		// If document is already loaded, run method
+		if ( document.readyState === 'interactive'  ) {
+			return fn();
 		}
-		return distance;
+
+		// Otherwise, wait until document is loaded
+		document.addEventListener( 'DOMContentLoaded', fn, false );
+
+	};
+
+
+	/**
+	 * Get an element's distance from the top of the Document.
+	 * @private
+	 * @param  {Node} elem The element
+	 * @return {Number}    Distance from the top in pixels
+	 */
+	var getOffsetTop = function ( elem ) {
+		var location = 0;
+		if (elem.offsetParent) {
+			do {
+				location += elem.offsetTop;
+				elem = elem.offsetParent;
+			} while (elem);
+		}
+		return location >= 0 ? location : 0;
 	};
 
 	/**
@@ -108,7 +151,7 @@
 
 		// Determine if content containers are stacked
 		if ( contentFirst && contentSecond ) {
-			if ( getDistanceToTop(contentFirst) - getDistanceToTop(contentSecond) === 0 ) {
+			if ( getOffsetTop(contentFirst) - getOffsetTop(contentSecond) === 0 ) {
 				return false;
 			} else {
 				return true;
@@ -164,11 +207,9 @@
 
 		// Selectors and variables
 		var settings = extend( settings || defaults, options || {} );  // Merge user options with defaults
-		var contents = container.querySelectorAll('[data-right-height-content]');
+		var contents = container.querySelectorAll( settings.selectorContent );
 		var isStacked = checkIfStacked(contents);
 		var height = '0';
-
-		settings.callbackBefore( container ); // Run callbacks before adjusting content
 
 		// Reset each content area to its natural height
 		forEach(contents, function (content) {
@@ -185,7 +226,7 @@
 			});
 		}
 
-		settings.callbackAfter( container ); // Run callbacks after adjust content
+		settings.callback( container ); // Run callbacks after adjust content
 
 	};
 
@@ -193,9 +234,9 @@
 	 * For each group of content, adjust the content area heights
 	 * @private
 	 * @param  {NodeList} containers A collection of content wrappers
-	 * @param  {Object} settings
+	 * @param  {Object}   settings
 	 */
-	var runRightHeight = function () {
+	var runRightHeight = function ( containers, settings ) {
 		forEach(containers, function (container) {
 			rightHeight.adjustContainerHeight( container, settings );
 		});
@@ -227,7 +268,7 @@
 
 		// Reset content and remove event listeners
 		forEach(containers, function (container) {
-			var contents = container.querySelectorAll('[data-right-height-content]');
+			var contents = container.querySelectorAll( settings.selectorContent );
 			forEach(contents, function (content) {
 				resetHeight( content );
 			});
@@ -256,11 +297,12 @@
 
 		// Selectors and variables
 		settings = extend( defaults, options || {} ); // Merge user options with defaults
-		containers = document.querySelectorAll('[data-right-height]'); // Groups of content
+		containers = document.querySelectorAll( settings.selector ); // Groups of content
 
 		// Events and listeners
-		runRightHeight( containers, options ); // Run Right Height on load
-		root.addEventListener('load', runRightHeight, false);
+		ready(function() {
+			runRightHeight( containers, options ); // Run Right Height on load
+		});
 		root.addEventListener('resize', eventThrottler, false); // Run Right Height on window resize
 
 	};
