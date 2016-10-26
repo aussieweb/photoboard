@@ -279,7 +279,15 @@
 						?>
 					</figure>
 					<h3 class="no-margin no-padding">
-						<?php comment_author_link() ?>
+						<?php
+							$fname = get_the_author_meta( 'first_name', $comment->user_id );
+							$lname = get_the_author_meta( 'last_name', $comment->user_id );
+							if ( empty( $fname ) ) {
+								comment_author();
+							} else {
+								echo esc_html( $fname ) . ' ' . esc_html( $lname );
+							}
+						?>
 					</h3>
 					<aside class="text-muted">
 						<time datetime="<?php comment_date( 'Y-m-d' ); ?>" pubdate><?php comment_date('F jS, Y') ?></time>
