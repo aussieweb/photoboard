@@ -20,14 +20,16 @@ $post_options = keel_get_post_options();
 
 		<header>
 
-			<aside class="text-muted">
-				<time datetime="<?php the_time( 'F j, Y' ); ?>" pubdate><?php the_time( 'F j, Y' ); ?></time>
-				<?php edit_post_link( __( 'Edit', 'keel' ), ' / ', '' ); ?>
-			</aside>
-
-			<h1 class="no-padding-top">
+			<h1 class="no-margin-bottom">
 				<?php the_title(); ?>
 			</h1>
+
+			<aside class="text-muted">
+				<p>
+					<time datetime="<?php the_time( 'F j, Y' ); ?>" pubdate><?php the_time( 'F j, Y' ); ?></time>
+					<?php edit_post_link( __( 'Edit', 'keel' ), ' / ', '' ); ?>
+				</p>
+			</aside>
 
 		</header>
 
