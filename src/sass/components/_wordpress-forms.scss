@@ -8,6 +8,7 @@
  * Styling for for WP subscribe to comment checkbox label
  */
 #subscribe-label {
+	@extend .label-checklist;
 	display: inline;
 }
 
