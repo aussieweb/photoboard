@@ -1,5 +1,5 @@
 /*!
- * photoboard v2.1.0: The WordPress theme for Photoboard
+ * photoboard v2.1.1: The WordPress theme for Photoboard
  * (c) 2016 Chris Ferdinandi
  * MIT License
  * https://github.com/cferdinandi/photoboard
@@ -832,7 +832,7 @@ label {
 }
 
 /* line 24, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_forms.scss */
-.label-checklist, .wpwebapp-form-label-checkbox, .photoboard-notifications-checkbox {
+.label-checklist, #subscribe-label, .wpwebapp-form-label-checkbox, .photoboard-notifications-checkbox {
   font-weight: normal;
 }
 
