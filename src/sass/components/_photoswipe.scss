@@ -3,9 +3,18 @@
  * Overrides for Photoswipe
  */
 
+// Hide social sharing
 .pswp__share--facebook,
 .pswp__share--twitter,
 .pswp__share--pinterest {
 	display: none !important; // =(
 	visibility: hidden !important; // =(
+}
+
+[data-photoswipe-count="1"] .grid-dynamic-third {
+	@extend .grid-full;
+}
+
+[data-photoswipe-count="2"] .grid-dynamic-third {
+	@extend .grid-half;
 }

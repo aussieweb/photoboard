@@ -1,5 +1,5 @@
 /*!
- * photoboard v2.1.1: The WordPress theme for Photoboard
+ * photoboard v2.2.0: The WordPress theme for Photoboard
  * (c) 2016 Chris Ferdinandi
  * MIT License
  * https://github.com/cferdinandi/photoboard
@@ -243,7 +243,7 @@ figure {
 }
 
 /* line 25, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
-.grid-third, .grid-half, .grid-two-thirds, .grid-full, .grid-dynamic-third, .grid-dynamic-fourth {
+.grid-third, .grid-half, [data-photoswipe-count="2"] .grid-dynamic-third, .grid-two-thirds, .grid-full, [data-photoswipe-count="1"] .grid-dynamic-third, .grid-dynamic-third, .grid-dynamic-fourth {
   float: left;
   width: 100%;
   padding-left: 1.4%;
@@ -267,7 +267,7 @@ figure {
     width: 33.33333%;
   }
   /* line 53, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
-  .grid-half {
+  .grid-half, [data-photoswipe-count="2"] .grid-dynamic-third {
     width: 50%;
   }
   /* line 53, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
@@ -275,7 +275,7 @@ figure {
     width: 66.66667%;
   }
   /* line 53, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
-  .grid-full {
+  .grid-full, [data-photoswipe-count="1"] .grid-dynamic-third {
     width: 100%;
   }
   /* line 59, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_grid.scss */
@@ -1616,7 +1616,7 @@ td {
  * @section Photoswipe
  * Overrides for Photoswipe
  */
-/* line 6, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_photoswipe.scss */
+/* line 7, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_photoswipe.scss */
 .pswp__share--facebook,
 .pswp__share--twitter,
 .pswp__share--pinterest {
