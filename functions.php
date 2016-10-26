@@ -264,6 +264,12 @@
 				<?php endif; ?>
 
 				<header class="margin-bottom-small clearfix">
+					<?php
+						// Get the comment author's name
+						$fname = get_the_author_meta( 'first_name', $comment->user_id );
+						$lname = get_the_author_meta( 'last_name', $comment->user_id );
+						$full_name = empty( $fname ) ? get_comment_author() : $fname . ' ' . $lname;
+					?>
 					<figure>
 						<?php
 							if ( $args['avatar_size'] !== 0 ) {
@@ -273,20 +279,15 @@
 								} else {
 									$colors = array( '#0088c', '#93b84c', '#f7272f', '#343d4d' );
 									$bg_color = array_rand( $colors, 1 );
-									echo '<div class="avatar avatar-text" style="background-color: ' . $colors[$bg_color] . ';">' . substr( get_comment_author(), 0, 1 ) . '</div>';
+									echo '<div class="avatar avatar-text" style="background-color: ' . $colors[$bg_color] . ';">' . esc_html( substr( $full_name, 0, 1 ) ) . '</div>';
 								}
 							}
 						?>
 					</figure>
 					<h3 class="no-margin no-padding">
 						<?php
-							$fname = get_the_author_meta( 'first_name', $comment->user_id );
-							$lname = get_the_author_meta( 'last_name', $comment->user_id );
-							if ( empty( $fname ) ) {
-								comment_author();
-							} else {
-								echo esc_html( $fname ) . ' ' . esc_html( $lname );
-							}
+							// Author name
+							echo esc_html( $full_name );
 						?>
 					</h3>
 					<aside class="text-muted">
