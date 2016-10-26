@@ -26,7 +26,7 @@
 		$info = pathinfo( $filename );
 
 		// Only run if the file is an MOV file
-		if ( strtolower( $info['extension'] ) !== 'mov' ) return $filename;
+		if ( !array_key_exists( 'extension', $info ) || strtolower( $info['extension'] ) !== 'mov' ) return $filename;
 
 		// Avoid infinite loop
 		if ( $info['filename'] . '.mp4' === $filename_raw ) return $filename;
