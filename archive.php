@@ -13,15 +13,15 @@ get_header(); ?>
 	<header class="grid-full">
 		<h1>
 			<?php if (is_category()) : // If this is a category archive ?>
-				<?php _e( 'Albums on', 'keel' ) ?> <?php single_cat_title(); ?>
+				<?php single_cat_title(); ?>
 			<?php elseif( is_tag() ) : // If this is a tag archive ?>
-				<?php _e( 'Albums on', 'keel' ) ?> <?php single_tag_title(); ?>
+				<?php single_tag_title(); ?>
 			<?php elseif (is_day()) : // If this is a daily archive ?>
-				<?php _e( 'Articles from', 'keel' ) ?> <?php the_time('F jS, Y'); ?>
+				<?php the_time('F jS, Y'); ?>
 			<?php elseif (is_month()) : // If this is a monthly archive ?>
-				<?php _e( 'Articles from', 'keel' ) ?> <?php the_time('F, Y'); ?>
+				<?php the_time('F, Y'); ?>
 			<?php elseif (is_year()) : // If this is a yearly archive ?>
-				<?php _e( 'Articles from', 'keel' ) ?> <?php the_time('Y'); ?>
+				<?php the_time('Y'); ?>
 			<?php elseif (is_author()) : // If this is an author archive ?>
 				<?php _e( 'Articles by', 'keel' ) ?> <?php the_author(); ?>
 			<?php elseif (isset($_GET['paged']) && !empty($_GET['paged'])) : // If this is a paged archive ?>
