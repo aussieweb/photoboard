@@ -1,5 +1,5 @@
 /*!
- * photoboard v2.4.2: The WordPress theme for Photoboard
+ * photoboard v2.4.3: The WordPress theme for Photoboard
  * (c) 2016 Chris Ferdinandi
  * MIT License
  * https://github.com/cferdinandi/photoboard
@@ -1407,7 +1407,7 @@ function makeArray( obj ) {
 		if ( typeof fn !== 'function' ) return;
 
 		// If document is already loaded, run method
-		if ( document.readyState === 'interactive'  ) {
+		if ( document.readyState === 'interactive' || document.readyState === 'complete'  ) {
 			return fn();
 		}
 
@@ -1955,7 +1955,7 @@ drop.init({
 	var albums = document.querySelector( '[data-right-height-content]' );
 	if ( !albums ) return;
 	imagesLoaded(albums, (function () {
-		window.setTimeout(rightHeight.init(), 250);
+		rightHeight.init();
 	}));
 })(window, document);
 
