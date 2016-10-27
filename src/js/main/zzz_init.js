@@ -8,9 +8,14 @@ drop.init({
 });
 
 // Right height
-if ( document.querySelector( '[data-right-height]' ) ) {
-	rightHeight.init();
-}
+;(function (window, document, undefined) {
+	'use strict';
+	var albums = document.querySelector( '[data-right-height-content]' );
+	if ( !albums ) return;
+	imagesLoaded(albums, function () {
+		rightHeight.init();
+	});
+})(window, document);
 
 // Add show/hide password checkbox
 ;(function (window, document, undefined) {
