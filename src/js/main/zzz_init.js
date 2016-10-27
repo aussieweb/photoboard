@@ -13,7 +13,7 @@ drop.init({
 	var albums = document.querySelector( '[data-right-height-content]' );
 	if ( !albums ) return;
 	imagesLoaded(albums, function () {
-		rightHeight.init();
+		window.setTimeout(rightHeight.init(), 150);
 	});
 })(window, document);
 
