@@ -1,5 +1,5 @@
 /*!
- * photoboard v2.4.1: The WordPress theme for Photoboard
+ * photoboard v2.4.2: The WordPress theme for Photoboard
  * (c) 2016 Chris Ferdinandi
  * MIT License
  * https://github.com/cferdinandi/photoboard
