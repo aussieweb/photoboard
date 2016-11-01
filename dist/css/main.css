@@ -1,5 +1,5 @@
 /*!
- * photoboard v2.5.0: The WordPress theme for Photoboard
+ * photoboard v2.6.0: The WordPress theme for Photoboard
  * (c) 2016 Chris Ferdinandi
  * MIT License
  * https://github.com/cferdinandi/photoboard
@@ -1640,7 +1640,7 @@ td {
  * Text sizes
  */
 /* line 39, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
-.text-small {
+.text-small, .wpwebapp-form-label-description {
   font-size: 0.9375em;
 }
 
@@ -1674,7 +1674,7 @@ td {
  * Text colors
  */
 /* line 66, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
-.text-muted {
+.text-muted, .wpwebapp-form-label-description {
   color: #808080;
 }
 
@@ -1724,7 +1724,7 @@ td {
 }
 
 /* line 129, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
-.no-margin-bottom {
+.no-margin-bottom, .wpwebapp-form-input-has-description {
   margin-bottom: 0;
 }
 
@@ -1736,7 +1736,7 @@ td {
 /* line 137, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_overrides.scss */
 .margin-bottom, .wp-video-shortcode, .x-ray,
 .x-ray-show,
-.x-ray-hide, .wpwebapp-form-label-checkbox, .photoboard-notifications-checkbox {
+.x-ray-hide, .wpwebapp-form-label-checkbox, .wpwebapp-form-label-description, .photoboard-notifications-checkbox {
   margin-bottom: 1.5625em;
 }
 
