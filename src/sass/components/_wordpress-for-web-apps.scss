@@ -3,6 +3,23 @@
  * WordPress for Web Apps overrides
  */
 
+// Add alert styles
+.wpwebapp-alert {
+	@extend .alert;
+}
+
+.wpwebapp-alert-error {
+	@extend .alert-danger;
+}
+
+.wpwebapp-alert-success {
+	@extend .alert-success;
+}
+
+// Add button styles
+.wpwebapp-form-button {
+	@extend .btn;
+}
 
 // Add more space after checkbox labels
 .wpwebapp-form-label-checkbox {
