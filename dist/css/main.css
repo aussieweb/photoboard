@@ -1,5 +1,5 @@
 /*!
- * photoboard v2.6.1: The WordPress theme for Photoboard
+ * photoboard v2.7.0: The WordPress theme for Photoboard
  * (c) 2016 Chris Ferdinandi
  * MIT License
  * https://github.com/cferdinandi/photoboard
@@ -704,7 +704,7 @@ q:after {
  * Styling for CSS buttons.
  */
 /* line 6, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_buttons.scss */
-.btn, input[type="submit"] {
+.btn, input[type="submit"], .wpwebapp-form-button {
   background-color: transparent;
   border: 0.125em solid #fa7176;
   border-radius: 0.0725em;
@@ -718,38 +718,51 @@ q:after {
 }
 
 /* line 19, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_buttons.scss */
-.btn, input[type="submit"],
+.btn, input[type="submit"], .wpwebapp-form-button,
 .btn:hover,
 input[type="submit"]:hover,
+.wpwebapp-form-button:hover,
 a .btn:hover, .link-block-styled .btn:hover,
 a input[type="submit"]:hover, .link-block-styled input[type="submit"]:hover,
+a .wpwebapp-form-button:hover, .link-block-styled .wpwebapp-form-button:hover,
 .btn:focus,
 input[type="submit"]:focus,
+.wpwebapp-form-button:focus,
 a .btn:focus, .link-block-styled .btn:focus,
 a input[type="submit"]:focus, .link-block-styled input[type="submit"]:focus,
+a .wpwebapp-form-button:focus, .link-block-styled .wpwebapp-form-button:focus,
 .btn:active,
 input[type="submit"]:active,
+.wpwebapp-form-button:active,
 a .btn:active, .link-block-styled .btn:active,
 a input[type="submit"]:active, .link-block-styled input[type="submit"]:active,
+a .wpwebapp-form-button:active, .link-block-styled .wpwebapp-form-button:active,
 .btn.active,
-input.active[type="submit"] {
+input.active[type="submit"],
+.active.wpwebapp-form-button {
   color: #f7272f;
 }
 
 /* line 30, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_buttons.scss */
-.btn:hover, input[type="submit"]:hover,
+.btn:hover, input[type="submit"]:hover, .wpwebapp-form-button:hover,
 a .btn:hover, .link-block-styled .btn:hover,
 a input[type="submit"]:hover, .link-block-styled input[type="submit"]:hover,
+a .wpwebapp-form-button:hover, .link-block-styled .wpwebapp-form-button:hover,
 .btn:focus,
 input[type="submit"]:focus,
+.wpwebapp-form-button:focus,
 a .btn:focus, .link-block-styled .btn:focus,
 a input[type="submit"]:focus, .link-block-styled input[type="submit"]:focus,
+a .wpwebapp-form-button:focus, .link-block-styled .wpwebapp-form-button:focus,
 .btn:active,
 input[type="submit"]:active,
+.wpwebapp-form-button:active,
 a .btn:active, .link-block-styled .btn:active,
 a input[type="submit"]:active, .link-block-styled input[type="submit"]:active,
+a .wpwebapp-form-button:active, .link-block-styled .wpwebapp-form-button:active,
 .btn.active,
-input.active[type="submit"] {
+input.active[type="submit"],
+.active.wpwebapp-form-button {
   background-color: #f7272f;
   border-color: #f7272f;
   color: #ffffff;
@@ -757,17 +770,19 @@ input.active[type="submit"] {
 }
 
 /* line 60, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_buttons.scss */
-.btn:active, input[type="submit"]:active,
+.btn:active, input[type="submit"]:active, .wpwebapp-form-button:active,
 .btn.active,
-input.active[type="submit"] {
+input.active[type="submit"],
+.active.wpwebapp-form-button {
   box-shadow: inset 0 0.15625em 0.25em rgba(0, 0, 0, 0.15), 0 0.0725em 0.15625em rgba(0, 0, 0, 0.05);
   outline: 0;
 }
 
 /* line 66, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_buttons.scss */
-.btn.disabled, input.disabled[type="submit"],
+.btn.disabled, input.disabled[type="submit"], .disabled.wpwebapp-form-button,
 .btn[disabled],
-input[disabled][type="submit"] {
+input[disabled][type="submit"],
+[disabled].wpwebapp-form-button {
   pointer-events: none;
   cursor: not-allowed;
   opacity: 0.5;
@@ -783,7 +798,7 @@ input[disabled][type="submit"] {
 }
 
 /* line 92, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_buttons.scss */
-.btn, input[type="submit"],
+.btn, input[type="submit"], .wpwebapp-form-button,
 button,
 html input[type="button"],
 input[type="reset"],
@@ -800,9 +815,10 @@ input[type="submit"] {
 }
 
 /* line 109, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_buttons.scss */
-.btn:last-child, input[type="submit"]:last-child,
+.btn:last-child, input[type="submit"]:last-child, .wpwebapp-form-button:last-child,
 input.btn,
-input[type="submit"] {
+input[type="submit"],
+input.wpwebapp-form-button {
   margin-right: 0;
 }
 
@@ -1247,7 +1263,7 @@ a:hover .icon-link, .link-block-styled:hover .icon-link, .link-block:hover .link
 /* line 4, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_astro.scss */
 .nav-wrap {
   background-color: #f7f7f7;
-  padding-top: 1em;
+  padding-top: 0.5em;
   padding-bottom: 0.5em;
   text-align: left;
 }
@@ -1541,7 +1557,7 @@ td {
 }
 
 /* line 1, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_alerts.scss */
-.alert {
+.alert, .wpwebapp-alert {
   color: #005580;
   background-color: #cce7f5;
   border: 0.0725em solid #a6d5ed;
@@ -1551,14 +1567,14 @@ td {
 }
 
 /* line 10, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_alerts.scss */
-.alert-success {
+.alert-success, .wpwebapp-alert-success {
   color: #1f481c;
   background-color: #d7e5d6;
   border-color: #b9d2b7;
 }
 
 /* line 16, /Users/cferdinandi/Sites/photoboard2/wordpress/wp-content/themes/photoboard/src/sass/components/_alerts.scss */
-.alert-danger {
+.alert-danger, .wpwebapp-alert-error {
   color: #43070a;
   background-color: #e7cfd0;
   border-color: #d5abad;
